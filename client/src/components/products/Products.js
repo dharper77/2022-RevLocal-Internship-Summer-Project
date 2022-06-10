@@ -8,17 +8,15 @@ const Products = () => {
   useEffect(() => {
     fetch('/api/v1/products')
       .then(response => response.json())
-      .then(data => {
-        setProducts(data)
-        console.log(data)
-      })
+      .then(setProducts)
       .catch(err => console.log(err))
   }, [])
 
   return (
     <div className="products">
-      {products.map(({ title, description, image, price, rating }) => (
+      {products.map(({ id, title, description, image, price, rating }) => (
         <Product
+          key={id}
           title={title}
           description={description}
           image={image}
