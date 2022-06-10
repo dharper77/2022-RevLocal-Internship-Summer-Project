@@ -1,26 +1,31 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import Product from './Product'
 
 const Products = () => {
-  let productArray = []
-  fetch('/api/v1/products')
-    .then(data => data.json())
-    .then(out => console.log(out))
-    .catch(err => console.log(err))
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch('/api/v1/products')
+      .then(response => response.json())
+      .then(data => {
+        setProducts(data)
+        console.log(data)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   return (
     <div className="products">
-      {productArray.map((key, val) => {
-        return (
-          <Product
-            id={val.id}
-            title={val.title}
-            description={val.description}
-            price={val.price}
-            image={val.image}
-          />
-        )
-      })}
+      {products.map(({ title, description, image, price, rating }) => (
+        <Product
+          title={title}
+          description={description}
+          image={image}
+          price={price}
+          rating={rating}
+        />
+      ))}
     </div>
   )
 }
