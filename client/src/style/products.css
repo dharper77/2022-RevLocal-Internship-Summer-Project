@@ -53,6 +53,13 @@ div {
   padding: 0px;
 }
 
+/* .shopping-cart {
+  padding: '0px';
+  justify-content: 'center';
+  padding: 16px;
+ 
+} */
+
 .searchbar input {
   font-family: 'Inter', sans-serif;
   font-size: 100%;
