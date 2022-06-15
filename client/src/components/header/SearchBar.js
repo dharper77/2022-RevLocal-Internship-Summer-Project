@@ -5,18 +5,23 @@ import SearchSharpIcon from '@mui/icons-material/SearchSharp'
 
 const SearchBar = () => {
   return (
+    // search bar input field + button container
     <Grid
       container
       direction="row"
       sx={{
-        padding: '0px',
-        justifyContent: 'center'
+        padding: '10px',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
+      {/* search bar input field */}
       <Grid className="searchbar" item xs={8} sx={{ paddingRight: '0px' }}>
         <input type="text" placeholder="Search..." />
       </Grid>
-      <Grid item className="search-button" sx={{ marginTop: '16px' }}>
+
+      {/* search bar magnifying-glass button */}
+      <Grid item className="search-button">
         <IconButton sx={{ padding: '7px' }}>
           <SearchSharpIcon />
         </IconButton>
