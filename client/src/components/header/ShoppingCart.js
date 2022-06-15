@@ -12,12 +12,10 @@ const ShoppingCart = () => {
         justifyContent: 'center'
       }}
     >
-        <Grid item className="shopping-cart" xs={8} sx={{ justifyContent: 'center', width: '100%'}}>
-            <Grid item sx={{ justifyContent: 'center', padding: '0px'}}>
+        <Grid item className="shopping-cart" sx={{ justifyContent: 'center', width: '100%', padding: '25px'}}>
                 <IconButton>
                     <ShoppingCartIcon/>
-                </IconButton>
-            </Grid>
+                </IconButton>  
         </Grid>
     </Grid>
   )
