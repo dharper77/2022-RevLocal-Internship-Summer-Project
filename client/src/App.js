@@ -1,14 +1,15 @@
 import React from 'react'
 import Header from './components/header/Header'
 import Products from './components/products/Products'
+import Container from '@mui/system/Container'
 import './style/App.css'
 
 const App = () => {
   return (
-    <div className="App">
+    <Container maxWidth="xl" sx={{ bgcolor: 'white' }}>
       <Header />
       <Products />
-    </div>
+    </Container>
   )
 }
 

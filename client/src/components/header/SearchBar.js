@@ -1,20 +1,28 @@
 import React from 'react'
-// import JSONDATA from './MOCK_DATA.json'
+import { Grid } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import SearchSharpIcon from '@mui/icons-material/SearchSharp'
 
 const SearchBar = () => {
   return (
-    <div className="searchbar">
-      <input type="text" placeholder="Search..." />
-
-      {/* happy path - list items from mock data */}
-      {/* {JSONDATA.map((val, key) => {
-        return (
-          <div className="products" key={key}>
-            <p>{val.title}</p>
-          </div>
-        )
-      })} */}
-    </div>
+    <Grid
+      container
+      className="searchbar"
+      direction="row"
+      sx={{
+        padding: '0px',
+        justifyContent: 'center'
+      }}
+    >
+      <Grid item>
+        <input type="text" placeholder="Search..." />
+      </Grid>
+      <Grid item sx={{ padding: '0px' }}>
+        <IconButton>
+          <SearchSharpIcon />
+        </IconButton>
+      </Grid>
+    </Grid>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import { Grid } from '@mui/material'
 import Product from './Product'
 
 const Products = () => {
@@ -9,22 +10,23 @@ const Products = () => {
     fetch('/api/v1/products')
       .then(response => response.json())
       .then(setProducts)
-      .catch(err => console.log(err))
+      .catch(error => console.log(error))
   }, [])
 
   return (
-    <div className="products">
+    <Grid container columnSpacing={5}>
       {products.map(({ id, title, description, image, price, rating }) => (
-        <Product
-          key={id}
-          title={title}
-          description={description}
-          image={image}
-          price={price}
-          rating={rating}
-        />
+        <Grid item xs={3}>
+          <Product
+            key={id}
+            title={title}
+            image={image}
+            price={price}
+            rating={rating}
+          />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   )
 }
 
