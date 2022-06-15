@@ -7,18 +7,17 @@ const SearchBar = () => {
   return (
     <Grid
       container
-      className="searchbar"
       direction="row"
       sx={{
         padding: '0px',
         justifyContent: 'center'
       }}
     >
-      <Grid item>
+      <Grid className="searchbar" item xs={8} sx={{ paddingRight: '0px' }}>
         <input type="text" placeholder="Search..." />
       </Grid>
-      <Grid item sx={{ padding: '0px' }}>
-        <IconButton>
+      <Grid item className="search-button" sx={{ marginTop: '16px' }}>
+        <IconButton sx={{ padding: '7px' }}>
           <SearchSharpIcon />
         </IconButton>
       </Grid>

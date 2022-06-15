@@ -6,7 +6,7 @@ import './style/App.css'
 
 const App = () => {
   return (
-    <Container maxWidth="xl" sx={{ bgcolor: 'white' }}>
+    <Container className="App" maxWidth="xl">
       <Header />
       <Products />
     </Container>

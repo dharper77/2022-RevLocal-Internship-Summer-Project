@@ -4,8 +4,8 @@ import { Grid } from '@mui/material'
 
 const Header = () => {
   return (
-    <Grid container className="header" sx={{ padding: '0px' }}>
-      <Grid item xs={6} sx={{ padding: '0px' }}>
+    <Grid container className="header">
+      <Grid item xs={5} sx={{ padding: '0px' }}>
         <SearchBar />
       </Grid>
     </Grid>
