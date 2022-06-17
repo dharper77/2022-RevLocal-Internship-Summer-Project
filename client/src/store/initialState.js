@@ -1,4 +1,5 @@
-export const defaultState = {
+const initialState = {
+  isLoggedIn: false,
   userData: {
     userName: '',
     firstName: '',
@@ -7,3 +8,5 @@ export const defaultState = {
   cart: [],
   products: []
 }
+
+export default initialState

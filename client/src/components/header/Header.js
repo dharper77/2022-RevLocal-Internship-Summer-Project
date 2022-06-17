@@ -4,8 +4,7 @@ import SearchBar from './SearchBar'
 import ShoppingCart from './ShoppingCart'
 import { Grid } from '@mui/material'
 import MyAccount from './MyAccount'
-import Categories from './Categories'
-
+import LoginButton from './LoginButton'
 
 const Header = () => {
   return (
@@ -19,12 +18,17 @@ const Header = () => {
       <Grid item xs={4} sx={{ padding: '0px' }}>
         <SearchBar />
       </Grid>
+
+      {/* my account or login */}
       <Grid item xs={1} sx={{ padding: '0px' }}>
         <MyAccount />
       </Grid>
+
       <Grid item xs={2} sx={{ padding: '0px' }}>
-        <Categories />
+        <LoginButton />
       </Grid>
+
+      {/* shopping cart */}
       <Grid item xs={1} sx={{ padding: '0px' }}>
         <ShoppingCart />
       </Grid>
