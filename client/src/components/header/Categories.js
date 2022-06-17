@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import { SelectUnstyled } from '@mui/base'
+import Button from '@mui/material/Button';
 
 const age = 20
 const Categories = () => {
@@ -12,20 +13,15 @@ const Categories = () => {
         padding: '0px',
       }}
     >
-        <Grid item  sx={{ padding: '25px'}}>
-            <SelectUnstyled
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                label="Age"
-                //onChange={handleChange}
-                //size="small"
-                className='select-catagories'
-            >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-        </SelectUnstyled> 
+        <Grid item  sx={{ padding: '26px'}}>
+        <Button
+        sx={{ width: '2.5rem', height: '2.5rem', padding: '0px'}}
+        onClick={() => {
+        alert('clicked');
+        }}
+        >
+        Log In
+        </Button>
         </Grid>
     </Grid>
   )
