@@ -21,14 +21,20 @@
   padding-bottom: 0px;
 }
 
+.product-listing:hover {
+  transform: scale(1.1);
+}
+
 h1 {
   padding-left: 30px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto Mono', monospace;
+}
+
+h2 {
   font-family: 'Roboto Mono', monospace;
 }
 
 h3 {
-  font-family: 'Inter', sans-serif;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -60,10 +66,9 @@ div {
   background-color: #d9d9d9;
   padding: 0px;
 }
- 
 
 .searchbar input {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto Mono', monospace;
   font-size: 100%;
   padding: '0px';
   justify-content: 'center';
@@ -90,24 +95,24 @@ div {
   background-color: #ffffff;
 }
 
-.link{
+.link {
   display: flex;
   align-items: cover;
   cursor: pointer;
   border-radius: 30px;
 }
-.link:hover{
+.link:hover {
   background-color: #e8f5fe;
   color: #50b7f5;
   transition: color 100ms ease-out;
 }
-.link > h2{
+.link > h2 {
   font-weight: 700;
   font-size: 20px;
   margin-right: 20px;
 }
 
-.sidebar{
+.sidebar {
   border-radius: 10px;
   width: 75%;
   justify-content: center;
@@ -115,4 +120,16 @@ div {
   margin: 0px auto 0 auto;
   box-shadow: 0 0 6px hsl(210 14% 90%);
   background-color: #d9d9d9;
+}
+
+.logInButton {
+  font-family: 'Roboto Mono', monospace;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
 }

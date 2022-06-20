@@ -9,9 +9,13 @@ import { connect } from 'react-redux'
 
 const Header = props => {
   return (
-    <Grid container className="header">
+    <Grid
+      container
+      className="header"
+      sx={{ alignItems: 'center', justifyContent: 'space-around' }}
+    >
       {/* logo */}
-      <Grid item xs={4} sx={{ padding: '0px' }}>
+      <Grid item xs={2.5} sx={{ padding: '0px' }}>
         <Logo />
       </Grid>
 
@@ -21,7 +25,7 @@ const Header = props => {
       </Grid>
 
       {/* log in button or my account */}
-      <Grid item xs={3} sx={{ padding: '0px' }}>
+      <Grid item xs={1} sx={{ padding: '0px', justifyContent: 'center' }}>
         {props.isLoggedIn ? <MyAccount /> : <LoginButton />}
       </Grid>
 

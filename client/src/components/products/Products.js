@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Grid } from '@mui/material'
 import Product from './Product'
+import { Link } from 'react-router-dom'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -14,16 +15,24 @@ const Products = () => {
   }, [])
 
   return (
-    <Grid container columnSpacing={3} className='products'>
+    <Grid
+      container
+      columnSpacing={6}
+      rowSpacing={2}
+      className="products"
+      sx={{ paddingTop: '10px' }}
+    >
       {products.map(({ id, title, description, image, price, rating }) => (
         <Grid item xs={4} sx={{ paddingTop: '0px' }}>
-          <Product
-            key={id}
-            title={title}
-            image={image}
-            price={price}
-            rating={rating}
-          />
+          <Link to={`/products/${id}`}>
+            <Product
+              key={id}
+              title={title}
+              image={image}
+              price={price}
+              rating={rating}
+            />
+          </Link>
         </Grid>
       ))}
     </Grid>

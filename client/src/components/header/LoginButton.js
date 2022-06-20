@@ -1,8 +1,6 @@
 import React from 'react'
 import { Grid } from '@mui/material'
-import Button from '@mui/material/Button'
-import { logIn } from '../../store/reducers/logInReducer'
-import { store } from '../../store/store'
+import { Link } from 'react-router-dom'
 
 const LoginButton = () => {
   return (
@@ -12,13 +10,10 @@ const LoginButton = () => {
         padding: '0px'
       }}
     >
-      <Grid item sx={{ padding: '26px' }}>
-        <Button
-          sx={{ width: '2.5rem', height: '2.5rem', padding: '0px' }}
-          onClick={() => store.dispatch(logIn())}
-        >
-          Log In
-        </Button>
+      <Grid item className="logInButton" sx={{ padding: '26px' }}>
+        <Link to="/login">
+          <h3>Log In</h3>
+        </Link>
       </Grid>
     </Grid>
   )
