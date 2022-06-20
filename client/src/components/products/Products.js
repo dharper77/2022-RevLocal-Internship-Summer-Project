@@ -14,9 +14,9 @@ const Products = () => {
   }, [])
 
   return (
-    <Grid container columnSpacing={5}>
+    <Grid container columnSpacing={3} className='products'>
       {products.map(({ id, title, description, image, price, rating }) => (
-        <Grid item xs={3}>
+        <Grid item xs={4} sx={{ paddingTop: '0px' }}>
           <Product
             key={id}
             title={title}
