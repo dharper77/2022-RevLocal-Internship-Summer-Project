@@ -1,7 +1,5 @@
 import React from 'react'
 import { Grid } from '@mui/material'
-import MenuItem from '@mui/material/MenuItem'
-import { SelectUnstyled } from '@mui/base'
 import Button from '@mui/material/Button'
 import { logIn } from '../../store/reducers/logInReducer'
 import { store } from '../../store/store'

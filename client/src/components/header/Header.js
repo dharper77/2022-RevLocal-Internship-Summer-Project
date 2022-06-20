@@ -5,8 +5,9 @@ import ShoppingCart from './ShoppingCart'
 import { Grid } from '@mui/material'
 import MyAccount from './MyAccount'
 import LoginButton from './LoginButton'
+import { connect } from 'react-redux'
 
-const Header = () => {
+const Header = props => {
   return (
     <Grid container className="header">
       {/* logo */}
@@ -19,13 +20,9 @@ const Header = () => {
         <SearchBar />
       </Grid>
 
-      {/* my account or login */}
-      <Grid item xs={1} sx={{ padding: '0px' }}>
-        <MyAccount />
-      </Grid>
-
-      <Grid item xs={2} sx={{ padding: '0px' }}>
-        <LoginButton />
+      {/* log in button or my account */}
+      <Grid item xs={3} sx={{ padding: '0px' }}>
+        {props.isLoggedIn ? <MyAccount /> : <LoginButton />}
       </Grid>
 
       {/* shopping cart */}
@@ -36,4 +33,10 @@ const Header = () => {
   )
 }
 
-export default Header
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.logIn.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps)(Header)
