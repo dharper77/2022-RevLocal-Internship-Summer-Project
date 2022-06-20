@@ -11,7 +11,7 @@ const App = () => {
     <Container className="App" maxWidth="xl" >
       <Header />
         <Grid container sx={{ padding: '0px' }}>
-          <Grid item xs={2} >
+          <Grid item xs={2} sx={{ paddingRight: '0px', paddingLeft: '0px' }}>
             <Sidebar />
           </Grid>
           <Grid item xs={10}>
