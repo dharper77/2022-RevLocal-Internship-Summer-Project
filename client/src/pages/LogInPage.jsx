@@ -1,9 +1,14 @@
 import React from 'react'
 
+const handleSubmit = () => {
+  console.log('form Submitted')
+  return <p>Form Submitted</p>
+}
+
 const LogInPage = () => {
   return (
     <div className="logInPage">
-      <p>Welcome to log in page!</p>
+      <form onSubmit={handleSubmit}></form>
     </div>
   )
 }

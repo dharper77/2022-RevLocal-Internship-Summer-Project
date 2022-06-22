@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../style/products.css'
+import '../../style/typography.css'
 
 const Product = ({ id, title, description, image, price, rating }) => {
   return (

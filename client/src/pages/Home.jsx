@@ -4,8 +4,17 @@ import Products from '../components/products/Products'
 import '../style/App.css'
 import Sidebar from '../components/sidebar/SideBar'
 import { Grid } from '@mui/material'
+import { useDispatch } from 'react-redux'
+import { resetCategories } from '../store/reducers/selectCategoriesReducer'
+import { useEffect } from 'react'
 
 const Home = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(resetCategories())
+  }, [])
+
   return (
     <>
       <Header />

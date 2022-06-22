@@ -34,29 +34,6 @@
   float: right;
 }
 
-h1 {
-  padding-left: 30px;
-  font-family: 'Roboto Mono', monospace;
-}
-
-h2 {
-  font-family: 'Roboto Mono', monospace;
-}
-
-h3 {
-  font-family: 'Roboto Mono', monospace;
-}
-
-h3.product-title {
-  text-overflow: ellipsis ellipsis;
-  margin-top: 0px;
-}
-
-h3.price {
-  color: green;
-  margin-bottom: 10px;
-}
-
 .product-price {
   color: green;
   margin: 0px;
@@ -122,11 +99,13 @@ div {
   cursor: pointer;
   border-radius: 30px;
 }
+
 .link:hover {
   background-color: #e8f5fe;
   color: #50b7f5;
   transition: color 100ms ease-out;
 }
+
 .link > h2 {
   font-weight: 700;
   font-size: 20px;
@@ -148,10 +127,6 @@ div {
   font-size: 75%;
 }
 
-a,
-a:hover,
-a:focus,
-a:active {
-  text-decoration: none;
-  color: inherit;
+.product-title {
+  margin: 0px;
 }
