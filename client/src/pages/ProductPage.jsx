@@ -31,7 +31,7 @@ const ProductPage = () => {
         </Grid>
         <Grid item xs={4}>
           <div>
-            <h3>{product.title}</h3>
+            <h3 className="product-title">{product.title}</h3>
           </div>
           <div className="price-and-rating">
             <h3 className="product-price">${product.price}</h3>
