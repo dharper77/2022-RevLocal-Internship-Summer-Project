@@ -6,6 +6,11 @@
   opacity: 1;
 }
 
+.product-page-image {
+  object-fit: cover;
+  max-height: 100%;
+}
+
 .products {
   padding: 0px;
 }
@@ -23,6 +28,10 @@
 
 .product-listing:hover {
   transform: scale(1.1);
+}
+
+.rating {
+  float: right;
 }
 
 h1 {
@@ -46,6 +55,18 @@ h3.product-title {
 h3.price {
   color: green;
   margin-bottom: 10px;
+}
+
+.product-price {
+  color: green;
+  margin: 0px;
+  width: 25%;
+  float: left;
+}
+
+.price-and-rating {
+  text-align: 'center';
+  height: 2rem;
 }
 
 img {
@@ -124,6 +145,7 @@ div {
 
 .logInButton {
   font-family: 'Roboto Mono', monospace;
+  font-size: 75%;
 }
 
 a,

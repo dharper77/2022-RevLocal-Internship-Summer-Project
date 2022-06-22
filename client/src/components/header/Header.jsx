@@ -25,7 +25,7 @@ const Header = props => {
       </Grid>
 
       {/* log in button or my account */}
-      <Grid item xs={1} sx={{ padding: '0px', justifyContent: 'center' }}>
+      <Grid item xs={2} sx={{ padding: '0px', justifyContent: 'center' }}>
         {props.isLoggedIn ? <MyAccount /> : <LoginButton />}
       </Grid>
 
