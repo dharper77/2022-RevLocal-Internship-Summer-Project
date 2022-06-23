@@ -19,7 +19,7 @@ const Home = () => {
     <>
       <Header />
       <Grid container sx={{ padding: '0px' }}>
-        <Grid item xs={3} sx={{ paddingTop: '26px' }}>
+        <Grid item xs={3} className='sidebar-grid'>
           <Sidebar />
         </Grid>
         <Grid item xs={9}>
