@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const Product = require('./database/schemas/Product')
+const Product = require('../models/Product')
+require('dotenv/config')
 
 async function findAllProducts() {
-    mongoose.connect("mongodb+srv://landonbconnell:consumore@cluster0.7lcwkon.mongodb.net/consumore" )
+    mongoose.connect(process.env.DB_CONNECTION)
 
     Product.find({}, (err, collection) => {
-        if (err) return err
         return collection
     })
 }

@@ -13,7 +13,7 @@ const ProductPage = () => {
     fetch(`/api/v1/products/${id}`)
       .then(response => response.json())
       .then(product => {
-        setProduct(product)
+        setProduct(product[0])
       })
       .catch(error => console.log(error))
   }, [])
