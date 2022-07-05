@@ -108,14 +108,14 @@ div {
 
 .link > h2 {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 20px; 
   margin-right: 20px;
 }
 
 .sidebar {
   border-radius: 10px; 
   width: 75%;
-  justify-content: center;
+  justify-content: center;   
   padding: 20px 20px;
    margin: 0px auto 0 auto;
   box-shadow: 0 0 6px hsl(210 14% 90%);
