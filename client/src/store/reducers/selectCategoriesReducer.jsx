@@ -16,7 +16,7 @@ export const selectCategorySlice = createSlice({
         el => el !== action.payload
       )
     },
-    resetCategories: (state, action) => {
+    resetCategories: state => {
       state.selectedCategories = []
     }
   }

@@ -115,7 +115,13 @@ div {
 .sidebar {
   border-radius: 10px; 
   width: 75%;
+<<<<<<< HEAD
   justify-content: center;   
+=======
+  position: sticky;
+  top: 0px;
+  justify-content: center;
+>>>>>>> productCSS
   padding: 20px 20px;
    margin: 0px auto 0 auto;
   box-shadow: 0 0 6px hsl(210 14% 90%);
@@ -141,4 +147,15 @@ div {
 
 .product-title {
   margin: 0px;
+}
+
+.quantity {
+  height: 2.5rem;
+  float: right;
+  width: 25%;
+}
+
+.add-to-cart {
+  height: 2.5rem;
+  width: 74%;
 }

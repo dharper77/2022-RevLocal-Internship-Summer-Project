@@ -4,9 +4,14 @@ import { useParams } from 'react-router-dom'
 import Header from '../components/header/Header'
 import { Grid } from '@mui/material'
 import Rating from '@mui/material/Rating'
+import SelectQuantity from '../components/buttons/SelectQuantity'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../store/reducers/cartReducer'
 
 const ProductPage = () => {
+  const dispatch = useDispatch()
   const [product, setProduct] = useState({})
+  const [selectedQuantity, setSelectedQuantity] = useState(1)
   const { id } = useParams()
 
   useEffect(() => {
@@ -30,9 +35,12 @@ const ProductPage = () => {
           />
         </Grid>
         <Grid item xs={4}>
+          {/* Product title */}
           <div>
             <h3 className="product-title">{product.title}</h3>
           </div>
+
+          {/* Price and rating */}
           <div className="price-and-rating">
             <h3 className="product-price">${product.price}</h3>
             {product && product.rating ? (
@@ -46,9 +54,21 @@ const ProductPage = () => {
               'Not Found'
             )}
           </div>
+
+          {/* Description */}
           <div>{product.description}</div>
+
+          {/* Add to cart and quantity selector */}
           <div>
-            <AddToCart />
+            <AddToCart
+              onClick={() => {
+                dispatch(addToCart({ product: id, quantity: selectedQuantity }))
+              }}
+            />
+            <SelectQuantity
+              value={selectedQuantity}
+              onChange={event => setSelectedQuantity(event.target.value)}
+            />
           </div>
         </Grid>
       </Grid>
