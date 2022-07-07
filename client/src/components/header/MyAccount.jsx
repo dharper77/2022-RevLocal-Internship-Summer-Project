@@ -89,7 +89,7 @@ export default function AccountMenu() {
         onClose={handleClose}
         onClick={handleClose}
         marginThreshold={0}
-        sx={{ maxHeight: '11rem' }}
+        sx={{ maxHeight: '11.5rem' }}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -123,7 +123,7 @@ export default function AccountMenu() {
         <Link to="/sell">
           <MenuItem>Sell</MenuItem>
         </Link>
-        <Divider sx={{ marginTop: '0.5rem', marginBottom: '0.5rem' }} />
+        <Divider sx={{ marginTop: '0.75rem', marginBottom: '0.75rem' }} />
         <MenuItem>
           Settings
           <ListItemIcon sx={{ padding: '0px' }}>

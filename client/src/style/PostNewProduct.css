@@ -1,18 +1,18 @@
-.new-product,
+/* .new-product,
 Grid,
-input {
+textfield {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-}
+} */
 
-.new-product,
+/* .new-product,
 Grid,
 select {
-  width: 70%;
+  width: 60%;
   display: flex;
-}
+} */
 
 #description {
   width: 100%;
@@ -20,5 +20,8 @@ select {
   margin: 8px 0;
   box-sizing: border-box;
   height: 200px;
-  resize: none;
+}
+
+.new-product > TextField {
+  width: 100%;
 }

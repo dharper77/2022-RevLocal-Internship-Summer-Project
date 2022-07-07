@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, Grid, MenuItem, Select, TextField } from '@mui/material'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
@@ -44,70 +44,103 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
   return (
     <>
       <Header />
-      <h1>Add a new product</h1>
+      <h1 style={{ paddingTop: '3rem', paddingLeft: '2rem', margin: '0px' }}>
+        Add a new product
+      </h1>
       <Grid
         container
-        justifyContent={'center'}
+        justifyContent={'space-around'}
         alignItems={'flex-start'}
         display={'flex'}
         flexDirection={'row'}
-        className="new-product"
       >
-        {/* Title field */}
-        <Grid item xs={4}>
+        {/* Title and Description fields */}
+        <Grid item xs={5} className="new-product">
           <h3>Title</h3>
           <TextField
+            fullWidth
             size="small"
-            type="text"
             onChange={event => dispatch(setTitle(event.target.value))}
           />
-        </Grid>
 
-        {/* Price field */}
-        <Grid item xs={4}>
-          <h3>Price</h3>
+          <h3 style={{ marginTop: '3rem' }}>Description</h3>
           <TextField
-            size="small"
-            type="text"
-            onChange={event => dispatch(setPrice(event.target.value))}
-          />
-        </Grid>
-
-        {/* Description field */}
-        <Grid item xs={4}>
-          <h3>Description</h3>
-          <TextField
+            fullWidth
             multiline
             id="description"
             onChange={event => dispatch(setDescription(event.target.value))}
           />
         </Grid>
 
-        {/* Category field */}
-        <Grid item xs={4}>
-          <h3>Category</h3>
-          <select onChange={event => dispatch(setCategory(event.target.value))}>
-            {categories.map(category => (
-              <option value={category} key={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </Grid>
-
-        {/* Image field */}
-        <Grid item xs={4}>
-          <h3>Image</h3>
+        {/* Image and Category fields */}
+        <Grid item xs={5} className="new-product">
+          <h3>Image URL</h3>
           <TextField
+            fullWidth
             size="small"
-            type="text"
             onChange={event => dispatch(setImage(event.target.value))}
           />
+
+          <Grid
+            container
+            justifyContent={'space-between'}
+            alignItems={'flex-start'}
+            display={'flex'}
+            flexDirection={'row'}
+            sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+          >
+            <Grid
+              item
+              xs={5.5}
+              sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+            >
+              <h3>Category</h3>
+              <Select
+                // sx={{ height: '4.5rem' }}
+                defaultValue=""
+                size="small"
+                fullWidth
+                className="categories"
+                onChange={event => dispatch(setCategory(event.target.value))}
+                MenuProps={{
+                  PaperProps: {
+                    style: {
+                      maxHeight: '200px'
+                    }
+                  }
+                }}
+              >
+                {categories.map(category => (
+                  <MenuItem value={category} key={category}>
+                    {category}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid
+              item
+              xs={5.5}
+              sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+            >
+              <h3>Price</h3>
+              <TextField
+                fullWidth
+                id="price"
+                size="small"
+                onChange={event => dispatch(setPrice(event.target.value))}
+              />
+            </Grid>
+          </Grid>
         </Grid>
 
-        {/* Submit button */}
-        <Grid item xs={4}>
-          <Button variant="contained" onClick={() => handleSubmit()}>
+        {/* Price field and submit button */}
+        <Grid item xs={3}>
+          <Button
+            variant="contained"
+            onClick={() => handleSubmit()}
+            fullWidth
+            sx={{ marginTop: '3rem' }}
+          >
             Submit
           </Button>
         </Grid>
