@@ -5,53 +5,36 @@ import {
   unselectCategory
 } from '../../store/reducers/selectCategoriesReducer'
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const Sidebar = () => {
   const dispatch = useDispatch()
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    fetch('/api/v1/products/categories')
+      .then(response => response.json())
+      .then(data => setCategories(data.categories))
+      .catch(error => console.log(error))
+  }, [])
 
   return (
     <div className="sidebar">
       <FormGroup>
-        <FormControlLabel
-          control={<Checkbox />}
-          onClick={event =>
-            event.target.checked
-              ? dispatch(selectCategory('electronics'))
-              : dispatch(unselectCategory('electronics'))
-          }
-          label="Electronics"
-          className="link"
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          onClick={event =>
-            event.target.checked
-              ? dispatch(selectCategory('jewelery'))
-              : dispatch(unselectCategory('jewelery'))
-          }
-          label="Jewelery"
-          className="link"
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          onClick={event =>
-            event.target.checked
-              ? dispatch(selectCategory("men's clothing"))
-              : dispatch(unselectCategory("men's clothing"))
-          }
-          label="Men's Clothing"
-          className="link"
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          onClick={event =>
-            event.target.checked
-              ? dispatch(selectCategory("women's clothing"))
-              : dispatch(unselectCategory("women's clothing"))
-          }
-          label="Women's Clothing"
-          className="link"
-        />
+        {categories.map(category => (
+          <FormControlLabel
+            key={category}
+            control={<Checkbox />}
+            onClick={event =>
+              event.target.checked
+                ? dispatch(selectCategory(category))
+                : dispatch(unselectCategory(category))
+            }
+            label={category}
+            className="link"
+          />
+        ))}
       </FormGroup>
     </div>
   )

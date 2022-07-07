@@ -1,0 +1,24 @@
+.new-product,
+Grid,
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.new-product,
+Grid,
+select {
+  width: 70%;
+  display: flex;
+}
+
+#description {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  height: 200px;
+  resize: none;
+}

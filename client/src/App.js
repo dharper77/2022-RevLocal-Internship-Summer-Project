@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Container from '@mui/system/Container'
 import LogInPage from './pages/LogInPage'
 import ProductPage from './pages/ProductPage'
+import PostNewProduct from './pages/PostNewProduct'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/products/:id" element={<ProductPage />} />
+          <Route path="/sell" element={<PostNewProduct />} />
         </Routes>
       </Container>
     </Router>

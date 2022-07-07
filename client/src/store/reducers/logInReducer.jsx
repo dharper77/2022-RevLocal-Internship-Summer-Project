@@ -6,7 +6,7 @@ const initialState = {
     { username: 'BADASS COOL GUY', password: 'notMyRealPassword' }
   ],
   loggedInUser: '',
-  isLoggedIn: false
+  isLoggedIn: true // TODO - switch back to false!!!
 }
 
 export const logInSlice = createSlice({

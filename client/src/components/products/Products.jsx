@@ -39,11 +39,10 @@ const Products = ({ selectedCategories }) => {
           className="products"
           sx={{ paddingTop: '10px' }}
         >
-          {filteredProducts.map(({ id, title, image, price, rating }) => (
-            <Grid item xs={4} sx={{ paddingTop: '0px' }}>
-              <Link to={`/products/${id}`}>
+          {filteredProducts.map(({ _id, title, image, price, rating }) => (
+            <Grid item xs={4} sx={{ paddingTop: '0px' }} key={_id}>
+              <Link to={`/products/${_id}`}>
                 <Product
-                  key={id}
                   title={title}
                   image={image}
                   price={price}
