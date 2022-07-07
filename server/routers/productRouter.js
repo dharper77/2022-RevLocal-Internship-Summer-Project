@@ -5,7 +5,8 @@ const router = express.Router()
 
 router.route('/').get(productController.getAllProducts)
 router.route('/categories').get(productController.getCategories)
-router.route('/:id').get(productController.getProduct)
+//router.route('/:title').get(productController.getProductByTitle)
+router.route('/:id').get(productController.getProductById)
 
 router.route('/').post(productController.postNewProduct)
 

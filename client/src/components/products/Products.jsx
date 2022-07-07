@@ -1,12 +1,12 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { Grid } from '@mui/material'
+import { Grid, Pagination } from '@mui/material'
 import Product from './Product'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Products = ({ selectedCategories }) => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState(null)
   const [filteredProducts, setFilteredProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -19,12 +19,14 @@ const Products = ({ selectedCategories }) => {
   }, [])
 
   useEffect(() => {
-    let temp = products.filter(
-      product =>
-        selectedCategories.includes(product.category) ||
-        selectedCategories.length === 0
-    )
-    setFilteredProducts(temp)
+    if (products) {
+      let temp = products.docs.filter(
+        product =>
+          selectedCategories.includes(product.category) ||
+          selectedCategories.length === 0
+      )
+      setFilteredProducts(temp)
+    }
   }, [products, selectedCategories])
 
   return (
@@ -51,6 +53,9 @@ const Products = ({ selectedCategories }) => {
               </Link>
             </Grid>
           ))}
+          {products && (
+            <Pagination count={products.totalPages} shape="rounded" /> // TODO - figure out how to get the page you want
+          )}
         </Grid>
       )}
     </>

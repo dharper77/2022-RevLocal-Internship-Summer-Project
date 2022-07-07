@@ -2,17 +2,38 @@ const fs = require('fs')
 const Product = require('../database/models/Product')
 
 exports.getAllProducts = async (req, res, next) => {
+  // try {
+  //   const products = await Product.find().limit(3)
+  //   res.status(200).json(products)
+  // } catch (err) {
+  //   res.json({ message: err })
+  // }
+
+  const options = {
+    page: 1,
+    limit: 12
+  }
+
   try {
-    const products = await Product.find()
+    const products = await Product.paginate({}, options)
     res.status(200).json(products)
   } catch (err) {
     res.json({ message: err })
   }
 }
 
-exports.getProduct = async (req, res, next) => {
+exports.getProductById = async (req, res, next) => {
   try {
     const product = await Product.find({ _id: req.params.id })
+    res.status(200).json(product)
+  } catch (err) {
+    res.json({ message: err })
+  }
+}
+
+exports.getProductByTitle = async (req, res, next) => {
+  try {
+    const product = await Product.find({ title: { $regex: req.params.title } })
     res.status(200).json(product)
   } catch (err) {
     res.json({ message: err })

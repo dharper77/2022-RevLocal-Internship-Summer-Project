@@ -1,4 +1,11 @@
-import { Button, Grid, MenuItem, Select, TextField } from '@mui/material'
+import {
+  Autocomplete,
+  Button,
+  Grid,
+  MenuItem,
+  Select,
+  TextField
+} from '@mui/material'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
@@ -95,7 +102,7 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
               sx={{ paddingLeft: '0px', paddingRight: '0px' }}
             >
               <h3>Category</h3>
-              <Select
+              {/* <Select
                 // sx={{ height: '4.5rem' }}
                 defaultValue=""
                 size="small"
@@ -115,7 +122,28 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
                     {category}
                   </MenuItem>
                 ))}
-              </Select>
+              </Select> */}
+              <Autocomplete
+                sx={{ height: '4.5rem', padding: '0px' }}
+                freeSolo
+                disablePortal
+                forcePopupIcon
+                options={categories}
+                onInputChange={(event, input) => dispatch(setCategory(input))}
+                renderInput={params => (
+                  <TextField
+                    {...params}
+                    label=""
+                    sx={{ paddingRight: '0px' }}
+                  />
+                )}
+                ListboxProps={{
+                  style: {
+                    //minHeight: 200,
+                    maxHeight: '300px'
+                  }
+                }}
+              />
             </Grid>
             <Grid
               item
