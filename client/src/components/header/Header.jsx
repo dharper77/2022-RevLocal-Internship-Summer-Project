@@ -8,6 +8,7 @@ import LoginButton from './LoginButton'
 import { connect } from 'react-redux'
 
 const Header = props => {
+
   return (
     <Grid
       container
@@ -22,7 +23,7 @@ const Header = props => {
       {/* search bar */}
       <Grid item xs={4} sx={{ padding: '0px' }}>
         <SearchBar />
-      </Grid>
+      </Grid> 
 
       {/* log in button or my account */}
       <Grid item xs={2} sx={{ padding: '0px', justifyContent: 'center' }}>

@@ -2,8 +2,6 @@ import {
   Autocomplete,
   Button,
   Grid,
-  MenuItem,
-  Select,
   TextField
 } from '@mui/material'
 import axios from 'axios'
@@ -128,7 +126,6 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
                 freeSolo
                 forcePopupIcon
                 fullWidth
-                className="Autocomplete"
                 options={categories}
                 onInputChange={(event, input) => dispatch(setCategory(input))}
                 renderInput={params => <TextField {...params} label="" />}
@@ -151,6 +148,8 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
         </Grid>
 
         {/* Price field and submit button */}
+        <Grid item xs={3}>
+        </Grid>
         <Grid item xs={3}>
           <Button
             variant="contained"

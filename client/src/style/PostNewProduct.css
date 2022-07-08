@@ -1,18 +1,3 @@
-/* .new-product,
-Grid,
-textfield {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-} */
-
-/* .new-product,
-Grid,
-select {
-  width: 60%;
-  display: flex;
-} */
 
 #description {
   width: 100%;
@@ -22,13 +7,7 @@ select {
   height: 200px;
 }
 
-/* .new-product > TextField {
-  width: 100%;
-} */
-
-.autocomplete,
-div,
-div {
+.MuiAutocomplete-endAdornment {
   padding: 0px;
 }
 

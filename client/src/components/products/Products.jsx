@@ -2,18 +2,26 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Grid, Pagination } from '@mui/material'
 import Product from './Product'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+import { connect, useDispatch } from 'react-redux'
+import '../../style/products.css'
+import { setTotalPages } from '../../store/reducers/pageReducer'
 
 const Products = ({ selectedCategories }) => {
   const [products, setProducts] = useState(null)
   const [filteredProducts, setFilteredProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const dispatch = useDispatch()
+  const { page } = useParams()
 
   useEffect(() => {
-    fetch('/api/v1/products')
+    console.log(page)
+    fetch(`/api/v1/products/page/${page}`)
       .then(response => response.json())
-      .then(setProducts)
+      .then(data => {
+        setProducts(data)
+        dispatch(setTotalPages((data.totalPages)))
+      })
       .then(setIsLoading(false))
       .catch(error => console.log(error))
   }, [])
@@ -45,7 +53,7 @@ const Products = ({ selectedCategories }) => {
             <Grid item xs={4} sx={{ paddingTop: '0px' }} key={_id}>
               <Link to={`/products/${_id}`}>
                 <Product
-                  title={title}
+                  title={title} 
                   image={image}
                   price={price}
                   rating={rating}
@@ -70,7 +78,8 @@ const changePage = page => {}
 
 const mapStateToProps = state => {
   return {
-    selectedCategories: state.selectedCategories.selectedCategories
+    selectedCategories: state.selectedCategories.selectedCategories,
+    currentPage: state.page.page
   }
 }
 export default connect(mapStateToProps)(Products)
