@@ -25,3 +25,22 @@ select {
 /* .new-product > TextField {
   width: 100%;
 } */
+
+.autocomplete,
+div,
+div {
+  padding: 0px;
+}
+
+.MuiAutocomplete-popper {
+  max-height: 200px;
+}
+
+#submit {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+#submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
+}

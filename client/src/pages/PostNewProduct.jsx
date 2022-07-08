@@ -101,7 +101,7 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
               xs={5.5}
               sx={{ paddingLeft: '0px', paddingRight: '0px' }}
             >
-              <h3>Category</h3>
+              <h3 style={{ marginTop: '3rem' }}>Category</h3>
               {/* <Select
                 // sx={{ height: '4.5rem' }}
                 defaultValue=""
@@ -126,23 +126,12 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
               <Autocomplete
                 sx={{ height: '4.5rem', padding: '0px' }}
                 freeSolo
-                disablePortal
                 forcePopupIcon
+                fullWidth
+                className="Autocomplete"
                 options={categories}
                 onInputChange={(event, input) => dispatch(setCategory(input))}
-                renderInput={params => (
-                  <TextField
-                    {...params}
-                    label=""
-                    sx={{ paddingRight: '0px' }}
-                  />
-                )}
-                ListboxProps={{
-                  style: {
-                    //minHeight: 200,
-                    maxHeight: '300px'
-                  }
-                }}
+                renderInput={params => <TextField {...params} label="" />}
               />
             </Grid>
             <Grid
@@ -150,7 +139,7 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
               xs={5.5}
               sx={{ paddingLeft: '0px', paddingRight: '0px' }}
             >
-              <h3>Price</h3>
+              <h3 style={{ marginTop: '3rem' }}>Price</h3>
               <TextField
                 fullWidth
                 id="price"
@@ -167,6 +156,7 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
             variant="contained"
             onClick={() => handleSubmit()}
             fullWidth
+            id="submit"
             sx={{ marginTop: '3rem' }}
           >
             Submit

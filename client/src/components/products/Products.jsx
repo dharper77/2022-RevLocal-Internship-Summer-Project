@@ -54,13 +54,19 @@ const Products = ({ selectedCategories }) => {
             </Grid>
           ))}
           {products && (
-            <Pagination count={products.totalPages} shape="rounded" /> // TODO - figure out how to get the page you want
+            <Pagination
+              count={products.totalPages}
+              shape="rounded"
+              onChange={(event, page) => changePage(page)}
+            /> // TODO - figure out how to get the page you want
           )}
         </Grid>
       )}
     </>
   )
 }
+
+const changePage = page => {}
 
 const mapStateToProps = state => {
   return {
