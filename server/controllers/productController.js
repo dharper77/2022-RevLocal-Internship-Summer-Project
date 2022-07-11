@@ -3,23 +3,23 @@ const Product = require('../database/models/Product')
 
 exports.getProductByPage = async (req, res, next) => {
   try {
-    if (req.query.categories) {
-      const selectedCategories = req.query.categories.split(',')
-      const products = await Product.paginate(
-        { category: { $in: selectedCategories } },
-        { page: req.params.page, limit: 12 }
-      )
-      res.status(200).json(products)
-    } else {
-      const products = await Product.paginate(
-        {},
-        { page: req.params.page, limit: 12 }
-      )
-      res.status(200).json(products)
-    }
+    const products = await Product.paginate(
+      {},
+      { page: req.params.page, limit: 12 }
+    )
+    res.status(200).json(products)
   } catch (err) {
     res.json({ message: err })
   }
+}
+
+exports.getProductsByCategory = async (req, res, next) => {
+  const selectedCategories = req.params.category.split(',')
+  const products = await Product.paginate(
+    { category: { $in: selectedCategories } },
+    { page: req.params.page, limit: 12 }
+  )
+  res.status(200).json(products)
 }
 
 exports.getProductById = async (req, res, next) => {

@@ -2,24 +2,24 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Grid, Pagination } from '@mui/material'
 import Product from './Product'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
 import '../../style/products.css'
-import { setPage, setTotalPages } from '../../store/reducers/pageReducer'
+import { setTotalPages } from '../../store/reducers/pageReducer'
 
 const Products = ({ selectedCategories, totalPages }) => {
   const dispatch = useDispatch()
-  const { page } = useParams()
-  const navigate = useNavigate()
 
-  const [currentPage, setCurrentPage] = useState(page)
+  const [currentPage, setCurrentPage] = useState(1)
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  const goToFirstPage = categoriesQueryString => {
-    navigate(`/${1}`)
-    dispatch(setPage(1))
-    fetch(`/api/v1/products/page/1/${categoriesQueryString}`)
+  const fetchProductsByCategory = () => {
+    let categories = ''
+    for (let i = 0; i < selectedCategories.length; i++) {
+      categories += `${selectedCategories[i]},`
+    }
+    fetch(`/api/v1/products/page/${currentPage}/${categories}`)
       .then(response => response.json())
       .then(data => {
         setProducts(data.docs)
@@ -29,30 +29,8 @@ const Products = ({ selectedCategories, totalPages }) => {
       .catch(error => console.log(error))
   }
 
-  // TODO - create a separate endpoint for category pages, then create a different useEffect
   useEffect(() => {
-    // determines whether to query categories
-    if (selectedCategories.length > 0) {
-      // creates query string from selectedCategories array
-      let categoriesQueryString = '?categories='
-      for (let i = 0; i < selectedCategories.length; i++) {
-        categoriesQueryString += `${selectedCategories[i]},`
-      }
-      fetch(`/api/v1/products/page/${currentPage}/${categoriesQueryString}`)
-        .then(response => response.json())
-        .then(data => {
-          setProducts(data.docs)
-          dispatch(setTotalPages(data.totalPages))
-          if (data.totalPages < 2) {
-            goToFirstPage(categoriesQueryString)
-          }
-        })
-        .then(setIsLoading(false))
-        .catch(error => console.log(error))
-    } else {
-      navigate(`/${currentPage}`)
-      //updates redux page state for use w/ logo
-      dispatch(setPage(currentPage))
+    if (selectedCategories.length === 0) {
       fetch(`/api/v1/products/page/${currentPage}`)
         .then(response => response.json())
         .then(data => {
@@ -61,8 +39,15 @@ const Products = ({ selectedCategories, totalPages }) => {
         })
         .then(setIsLoading(false))
         .catch(error => console.log(error))
+    } else {
+      fetchProductsByCategory()
     }
-  }, [selectedCategories, currentPage])
+  }, [currentPage])
+
+  useEffect(() => {
+    setCurrentPage(1)
+    fetchProductsByCategory()
+  }, [selectedCategories])
 
   return (
     <>
@@ -94,7 +79,6 @@ const Products = ({ selectedCategories, totalPages }) => {
               shape="rounded"
               page={currentPage}
               onChange={(event, page) => {
-                navigate(`/${page}`)
                 setCurrentPage(page)
               }}
             /> // TODO - figure out how to get the page you want
