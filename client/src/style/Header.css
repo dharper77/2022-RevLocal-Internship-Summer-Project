@@ -49,8 +49,16 @@
   height: 2rem;
 }
 
+.cart-title {
+  margin: 0px;
+}
+
+.cart-price {
+  margin: 0px;
+}
+
 img {
-  max-height: 200px;
+  max-height: 150px;
   object-fit: scale-down;
   border-radius: 10px;
   width: 100%;

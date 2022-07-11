@@ -7,19 +7,30 @@ import { connect, useDispatch } from 'react-redux'
 import '../../style/products.css'
 import { setTotalPages } from '../../store/reducers/pageReducer'
 
-const Products = ({ selectedCategories, totalPages }) => {
+const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
   const dispatch = useDispatch()
 
   const [currentPage, setCurrentPage] = useState(1)
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
+  const fetchAllProducts = () => {
+    fetch(`/api/v1/products/page/${currentPage}`)
+      .then(response => response.json())
+      .then(data => {
+        setProducts(data.docs)
+        dispatch(setTotalPages(data.totalPages))
+      })
+      .then(setIsLoading(false))
+      .catch(error => console.log(error))
+  }
+
   const fetchProductsByCategory = () => {
     let categories = ''
     for (let i = 0; i < selectedCategories.length; i++) {
       categories += `${selectedCategories[i]},`
     }
-    fetch(`/api/v1/products/page/${currentPage}/${categories}`)
+    fetch(`/api/v1/products/page/${currentPage}/category/${categories}`)
       .then(response => response.json())
       .then(data => {
         setProducts(data.docs)
@@ -31,7 +42,26 @@ const Products = ({ selectedCategories, totalPages }) => {
 
   useEffect(() => {
     if (selectedCategories.length === 0) {
-      fetch(`/api/v1/products/page/${currentPage}`)
+      fetchAllProducts()
+    } else {
+      fetchProductsByCategory()
+    }
+  }, [currentPage])
+
+  useEffect(() => {
+    if (selectedCategories.length === 0) {
+      fetchAllProducts()
+    } else {
+      setCurrentPage(1)
+      fetchProductsByCategory()
+    }
+  }, [selectedCategories])
+
+  useEffect(() => {
+    if (searchBarInput === '') {
+      fetchAllProducts()
+    } else {
+      fetch(`/api/v1/products/page/${currentPage}/title/${searchBarInput}`)
         .then(response => response.json())
         .then(data => {
           setProducts(data.docs)
@@ -39,15 +69,8 @@ const Products = ({ selectedCategories, totalPages }) => {
         })
         .then(setIsLoading(false))
         .catch(error => console.log(error))
-    } else {
-      fetchProductsByCategory()
     }
-  }, [currentPage])
-
-  useEffect(() => {
-    setCurrentPage(1)
-    fetchProductsByCategory()
-  }, [selectedCategories])
+  }, [searchBarInput])
 
   return (
     <>
@@ -73,15 +96,19 @@ const Products = ({ selectedCategories, totalPages }) => {
               </Link>
             </Grid>
           ))}
-          {products && (
-            <Pagination
-              count={totalPages}
-              shape="rounded"
-              page={currentPage}
-              onChange={(event, page) => {
-                setCurrentPage(page)
-              }}
-            /> // TODO - figure out how to get the page you want
+          {totalPages > 1 && (
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Pagination
+                  count={totalPages}
+                  shape="rounded"
+                  page={currentPage}
+                  onChange={(event, page) => {
+                    setCurrentPage(page)
+                  }}
+                />
+              </Grid>
+            </Grid>
           )}
         </Grid>
       )}
@@ -92,7 +119,8 @@ const Products = ({ selectedCategories, totalPages }) => {
 const mapStateToProps = state => {
   return {
     selectedCategories: state.selectedCategories.selectedCategories,
-    totalPages: state.page.totalPages
+    totalPages: state.page.totalPages,
+    searchBarInput: state.searchbar.input
   }
 }
 export default connect(mapStateToProps)(Products)

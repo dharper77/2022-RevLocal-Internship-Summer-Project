@@ -54,7 +54,7 @@ import IconButton from '@mui/material/IconButton'
 import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
-import Img from '../../store/imgs/avatar.jpg'
+import Img from '../../store/imgs/avatar2.jpg'
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -119,7 +119,7 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => console.log('Clicked')}>Profile</MenuItem>
+        <MenuItem>Profile</MenuItem>
         <Link to="/sell">
           <MenuItem>Sell</MenuItem>
         </Link>

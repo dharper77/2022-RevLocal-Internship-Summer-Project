@@ -1,33 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Badge, Grid, Drawer, ClickAwayListener } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import IconButton from '@mui/material/IconButton'
-import { useEffect } from 'react'
-import { store } from '../../store/store'
+import { connect } from 'react-redux'
 import '../../style/Header.css'
+import ProductInCart from '../cart/ProductInCart'
+import TotalInCart from '../cart/TotalInCart'
 
-const ShoppingCart = () => {
-  const state = store.getState()
-  const [quantityInCart, setQuantityInCart] = useState(0)
+export const ShoppingCart = ({ cart }) => {
   const [open, setOpen] = useState(false)
+  const [quantityInCart, setQuantityInCart] = useState(0)
   const [cartContents, setCartContents] = useState([])
-  let all = []
-  useEffect(() => {
-    let total = 0
 
-    state.cart.cart.forEach(el => (total += el.quantity))
+  useEffect(() => {
+    let all = []
+    let total = 0
+    cart.forEach(el => (total += el.quantity))
     setQuantityInCart(total)
-    state.cart.cart.forEach(el =>
+    cart.forEach(el =>
       fetch(`/api/v1/products/id/${el.product}`)
         .then(response => response.json())
         .then(product => {
           all.push(product[0])
+          setCartContents(all)
         })
-        .then(setCartContents(all))
-
         .catch(error => console.log(error))
     )
-  }, [state.cart.cart])
+  }, [cart])
+
+  const quantityByProduct = product => {
+    const found = cart.find(el => el.product === product._id)
+    if (found) {
+      return found.quantity
+    }
+  }
 
   return (
     <Grid
@@ -53,29 +59,26 @@ const ShoppingCart = () => {
             anchor={'right'}
             onClose={() => setOpen(false)}
             variant="persistent"
+            PaperProps={{
+              sx: { width: '30%' }
+            }}
           >
-            {console.log(cartContents.length)}
-            {console.log(cartContents)}
-            {cartContents.length !== 0 ? (
-              cartContents.map(e => (
-                <div className="product-listing2" key={e._id}>
-                  <img
-                    className="product-listing-image2"
-                    src={e.image}
-                    alt={e.title}
+            {cart.length > 0 ? (
+              <>
+                {cartContents.map(product => (
+                  <ProductInCart
+                    key={product._id}
+                    id={product._id}
+                    title={product.title}
+                    image={product.image}
+                    price={product.price}
+                    quantity={quantityByProduct(product)}
                   />
-                  <div>
-                    <h3 className="product-title2">
-                      {e.title.length > 40
-                        ? `${e.title.substring(0, 40)}...`
-                        : e.title}
-                    </h3>
-                    <h3 className="price2">${e.price}</h3>
-                  </div>
-                </div>
-              ))
+                ))}
+                <TotalInCart />
+              </>
             ) : (
-              <div>No Items In Cart</div>
+              <h1>No Items In Cart</h1>
             )}
           </Drawer>
         </ClickAwayListener>
@@ -84,4 +87,9 @@ const ShoppingCart = () => {
   )
 }
 
-export default ShoppingCart
+export const mapStateToProps = state => {
+  return {
+    cart: state.cart.cart
+  }
+}
+export default connect(mapStateToProps)(ShoppingCart)

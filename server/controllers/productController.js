@@ -31,10 +31,13 @@ exports.getProductById = async (req, res, next) => {
   }
 }
 
-exports.getProductByTitle = async (req, res, next) => {
+exports.getProductsByTitle = async (req, res, next) => {
   try {
-    const product = await Product.find({ title: { $regex: req.params.title } })
-    res.status(200).json(product)
+    const products = await Product.paginate(
+      { title: { $regex: req.params.title, $options: 'i' } },
+      { page: req.params.page, limit: 12 }
+    )
+    res.status(200).json(products)
   } catch (err) {
     res.json({ message: err })
   }

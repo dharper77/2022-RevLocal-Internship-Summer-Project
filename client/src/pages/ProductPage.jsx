@@ -11,6 +11,7 @@ import { addToCart } from '../store/reducers/cartReducer'
 const ProductPage = () => {
   const dispatch = useDispatch()
   const [product, setProduct] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
   const [selectedQuantity, setSelectedQuantity] = useState(1)
   const { id } = useParams()
 
@@ -19,6 +20,7 @@ const ProductPage = () => {
       .then(response => response.json())
       .then(product => {
         setProduct(product[0])
+        setIsLoading(false)
       })
       .catch(error => console.log(error))
   }, [])
@@ -26,52 +28,58 @@ const ProductPage = () => {
   return (
     <>
       <Header />
-      <Grid container sx={{ justifyContent: 'center', alignItems: 'center' }}>
-        <Grid item xs={4} sx={{ padding: '50px', marginTop: '20px' }}>
-          <img
-            className="product-page-image"
-            src={product.image}
-            alt={product.title}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          {/* Product title */}
-          <div>
-            <h3 className="product-title">{product.title}</h3>
-          </div>
+      {!isLoading && (
+        <Grid container sx={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Grid item xs={4} sx={{ padding: '50px', marginTop: '20px' }}>
+            <img
+              className="product-page-image"
+              src={product.image}
+              alt={product.title}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            {/* Product title */}
+            <div>
+              <h3 className="product-title">{product.title}</h3>
+            </div>
 
-          {/* Price and rating */}
-          <div className="price-and-rating">
-            <h3 className="product-price">${product.price}</h3>
-            {product && product.rating ? (
-              <Rating
-                className="rating"
-                precision={0.1}
-                value={product.rating.rate}
-                readOnly
+            {/* Price and rating */}
+            <div className="price-and-rating">
+              <h3 className="product-price">${product.price}</h3>
+              {product && product.rating && (
+                <Rating
+                  className="rating"
+                  precision={0.1}
+                  value={product.rating.rate}
+                  readOnly
+                />
+              )}
+            </div>
+
+            {/* Description */}
+            <div>{product.description}</div>
+
+            {/* Add to cart and quantity selector */}
+            <div>
+              <AddToCart
+                onClick={() => {
+                  dispatch(
+                    addToCart({
+                      product: id,
+                      quantity: selectedQuantity,
+                      price: product.price
+                    })
+                  )
+                }}
               />
-            ) : (
-              'Not Found'
-            )}
-          </div>
-
-          {/* Description */}
-          <div>{product.description}</div>
-
-          {/* Add to cart and quantity selector */}
-          <div>
-            <AddToCart
-              onClick={() => {
-                dispatch(addToCart({ product: id, quantity: selectedQuantity }))
-              }}
-            />
-            <SelectQuantity
-              value={selectedQuantity}
-              onChange={event => setSelectedQuantity(event.target.value)}
-            />
-          </div>
+              <SelectQuantity
+                value={selectedQuantity}
+                onChange={event => setSelectedQuantity(event.target.value)}
+              />
+            </div>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </>
   )
 }

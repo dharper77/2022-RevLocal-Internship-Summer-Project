@@ -5,6 +5,7 @@ import Container from '@mui/system/Container'
 import LogInPage from './pages/LogInPage'
 import ProductPage from './pages/ProductPage'
 import PostNewProduct from './pages/PostNewProduct'
+import CheckoutPage from './pages/CheckoutPage'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/login" element={<LogInPage />} />
           <Route path="/products/id/:id" element={<ProductPage />} />
           <Route path="/sell" element={<PostNewProduct />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
       </Container>
     </Router>

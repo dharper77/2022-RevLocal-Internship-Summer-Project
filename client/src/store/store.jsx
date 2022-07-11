@@ -4,6 +4,7 @@ import selectCategoriesReducer from './reducers/selectCategoriesReducer'
 import cartReducer from './reducers/cartReducer'
 import postNewProductReducer from './reducers/postNewProductReducer'
 import pageReducer from './reducers/pageReducer'
+import searchBarReducer from './reducers/searchBarReducer'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     selectedCategories: selectCategoriesReducer,
     cart: cartReducer,
     newProductListingDraft: postNewProductReducer,
-    page: pageReducer
+    page: pageReducer,
+    searchbar: searchBarReducer
   }
 })
