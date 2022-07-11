@@ -3,10 +3,10 @@ const productController = require('../controllers/productController')
 
 const router = express.Router()
 
-router.route('/').get(productController.getAllProducts)
 router.route('/categories').get(productController.getCategories)
+router.route('/page/:page').get(productController.getProductByPage)
 //router.route('/:title').get(productController.getProductByTitle)
-router.route('/:id').get(productController.getProductById)
+router.route('/id/:id').get(productController.getProductById)
 
 router.route('/').post(productController.postNewProduct)
 

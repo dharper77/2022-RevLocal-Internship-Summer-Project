@@ -1,22 +1,22 @@
 const fs = require('fs')
 const Product = require('../database/models/Product')
 
-exports.getAllProducts = async (req, res, next) => {
-  // try {
-  //   const products = await Product.find().limit(3)
-  //   res.status(200).json(products)
-  // } catch (err) {
-  //   res.json({ message: err })
-  // }
-
-  const options = {
-    page: 1,
-    limit: 12
-  }
-
+exports.getProductByPage = async (req, res, next) => {
   try {
-    const products = await Product.paginate({}, options)
-    res.status(200).json(products)
+    if (req.query.categories) {
+      const selectedCategories = req.query.categories.split(',')
+      const products = await Product.paginate(
+        { category: { $in: selectedCategories } },
+        { page: req.params.page, limit: 12 }
+      )
+      res.status(200).json(products)
+    } else {
+      const products = await Product.paginate(
+        {},
+        { page: req.params.page, limit: 12 }
+      )
+      res.status(200).json(products)
+    }
   } catch (err) {
     res.json({ message: err })
   }

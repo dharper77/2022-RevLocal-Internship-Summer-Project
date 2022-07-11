@@ -1,9 +1,4 @@
-import {
-  Autocomplete,
-  Button,
-  Grid,
-  TextField
-} from '@mui/material'
+import { Autocomplete, Button, Grid, TextField } from '@mui/material'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
@@ -100,27 +95,6 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
               sx={{ paddingLeft: '0px', paddingRight: '0px' }}
             >
               <h3 style={{ marginTop: '3rem' }}>Category</h3>
-              {/* <Select
-                // sx={{ height: '4.5rem' }}
-                defaultValue=""
-                size="small"
-                fullWidth
-                className="categories"
-                onChange={event => dispatch(setCategory(event.target.value))}
-                MenuProps={{
-                  PaperProps: {
-                    style: {
-                      maxHeight: '200px'
-                    }
-                  }
-                }}
-              >
-                {categories.map(category => (
-                  <MenuItem value={category} key={category}>
-                    {category}
-                  </MenuItem>
-                ))}
-              </Select> */}
               <Autocomplete
                 sx={{ height: '4.5rem', padding: '0px' }}
                 freeSolo
@@ -144,22 +118,18 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
                 onChange={event => dispatch(setPrice(event.target.value))}
               />
             </Grid>
+            <Grid item xs={12} sx={{ padding: '0px' }}>
+              <Button
+                variant="contained"
+                onClick={() => handleSubmit()}
+                fullWidth
+                id="submit"
+                sx={{ marginTop: '3rem' }}
+              >
+                Submit
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-
-        {/* Price field and submit button */}
-        <Grid item xs={3}>
-        </Grid>
-        <Grid item xs={3}>
-          <Button
-            variant="contained"
-            onClick={() => handleSubmit()}
-            fullWidth
-            id="submit"
-            sx={{ marginTop: '3rem' }}
-          >
-            Submit
-          </Button>
         </Grid>
       </Grid>
     </>
