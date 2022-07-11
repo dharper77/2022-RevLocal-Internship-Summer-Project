@@ -6,7 +6,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
 import '../../style/products.css'
 import { setPage, setTotalPages } from '../../store/reducers/pageReducer'
-import axios from 'axios'
 
 const Products = ({ selectedCategories, totalPages }) => {
   const dispatch = useDispatch()

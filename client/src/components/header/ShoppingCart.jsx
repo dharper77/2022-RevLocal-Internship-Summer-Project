@@ -11,10 +11,10 @@ const ShoppingCart = () => {
   const [quantityInCart, setQuantityInCart] = useState(0)
   const [open, setOpen] = useState(false)
   const [cartContents, setCartContents] = useState([])
-
+  let all = []
   useEffect(() => {
     let total = 0
-    let all = []
+
     state.cart.cart.forEach(el => (total += el.quantity))
     setQuantityInCart(total)
     state.cart.cart.forEach(el =>
@@ -55,9 +55,10 @@ const ShoppingCart = () => {
             variant="persistent"
           >
             {console.log(cartContents.length)}
+            {console.log(cartContents)}
             {cartContents.length !== 0 ? (
-              cartContents.forEach(e => (
-                <div className="product-listing2">
+              cartContents.map(e => (
+                <div className="product-listing2" key={e._id}>
                   <img
                     className="product-listing-image2"
                     src={e.image}
@@ -65,10 +66,9 @@ const ShoppingCart = () => {
                   />
                   <div>
                     <h3 className="product-title2">
-                      {/* {cartContents[0].title.length > 40
-                      ? `${cartContents.title.substring(0, 40)}...`
-                      : cartContents.title} */}
-                      {/* {cartContents.title} */}
+                      {e.title.length > 40
+                        ? `${e.title.substring(0, 40)}...`
+                        : e.title}
                     </h3>
                     <h3 className="price2">${e.price}</h3>
                   </div>
