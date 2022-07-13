@@ -119,7 +119,9 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>Profile</MenuItem>
+        <Link to="/myProfile">
+          <MenuItem>Profile</MenuItem>
+        </Link>
         <Link to="/sell">
           <MenuItem>Sell</MenuItem>
         </Link>

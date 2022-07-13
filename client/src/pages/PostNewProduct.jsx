@@ -12,7 +12,14 @@ import {
 } from '../store/reducers/postNewProductReducer'
 import Header from '../components/header/Header'
 
-const PostNewProduct = ({ title, price, description, category, image }) => {
+const PostNewProduct = ({
+  seller,
+  title,
+  price,
+  description,
+  category,
+  image
+}) => {
   const dispatch = useDispatch()
   const [categories, setCategories] = useState([])
 
@@ -26,6 +33,7 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
   const handleSubmit = async () => {
     try {
       await axios.post('/api/v1/products', {
+        seller,
         title,
         price,
         description,
@@ -138,6 +146,7 @@ const PostNewProduct = ({ title, price, description, category, image }) => {
 
 const mapStateToProps = state => {
   return {
+    seller: state.logIn.loggedInUser,
     title: state.newProductListingDraft.title,
     price: state.newProductListingDraft.price,
     description: state.newProductListingDraft.description,

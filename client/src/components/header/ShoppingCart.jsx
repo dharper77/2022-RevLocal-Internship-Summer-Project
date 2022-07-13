@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Badge, Grid, Drawer, ClickAwayListener } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import IconButton from '@mui/material/IconButton'
@@ -7,33 +7,8 @@ import '../../style/Header.css'
 import ProductInCart from '../cart/ProductInCart'
 import TotalInCart from '../cart/TotalInCart'
 
-export const ShoppingCart = ({ cart }) => {
+export const ShoppingCart = ({ cart, totalItemsInCart }) => {
   const [open, setOpen] = useState(false)
-  const [quantityInCart, setQuantityInCart] = useState(0)
-  const [cartContents, setCartContents] = useState([])
-
-  useEffect(() => {
-    let all = []
-    let total = 0
-    cart.forEach(el => (total += el.quantity))
-    setQuantityInCart(total)
-    cart.forEach(el =>
-      fetch(`/api/v1/products/id/${el.product}`)
-        .then(response => response.json())
-        .then(product => {
-          all.push(product[0])
-          setCartContents(all)
-        })
-        .catch(error => console.log(error))
-    )
-  }, [cart])
-
-  const quantityByProduct = product => {
-    const found = cart.find(el => el.product === product._id)
-    if (found) {
-      return found.quantity
-    }
-  }
 
   return (
     <Grid
@@ -46,7 +21,7 @@ export const ShoppingCart = ({ cart }) => {
     >
       <Grid item className="shopping-cart" sx={{ paddingRight: '30px' }}>
         <IconButton onClick={() => setOpen(true)}>
-          <Badge badgeContent={quantityInCart} color="error">
+          <Badge badgeContent={totalItemsInCart} color="error">
             <ShoppingCartIcon sx={{ width: '2.5rem', height: '2.5rem' }} />
           </Badge>
         </IconButton>
@@ -65,14 +40,12 @@ export const ShoppingCart = ({ cart }) => {
           >
             {cart.length > 0 ? (
               <>
-                {cartContents.map(product => (
+                {cart.map(product => (
                   <ProductInCart
-                    key={product._id}
-                    id={product._id}
-                    title={product.title}
-                    image={product.image}
+                    key={product.product}
+                    id={product.product}
                     price={product.price}
-                    quantity={quantityByProduct(product)}
+                    quantity={product.quantity}
                   />
                 ))}
                 <TotalInCart />
@@ -89,7 +62,8 @@ export const ShoppingCart = ({ cart }) => {
 
 export const mapStateToProps = state => {
   return {
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    totalItemsInCart: state.cart.totalItemsInCart
   }
 }
 export default connect(mapStateToProps)(ShoppingCart)

@@ -77,21 +77,16 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <Grid
-          container
-          columnSpacing={6}
-          rowSpacing={2}
-          className="products"
-          sx={{ paddingTop: '10px' }}
-        >
-          {products.map(({ _id, title, image, price, rating }) => (
+        <>
+          {products.map(({ _id, title, image, price }) => (
             <Grid item xs={4} sx={{ paddingTop: '0px' }} key={_id}>
               <Link to={`/products/id/${_id}`}>
                 <Product
+                  id={_id}
                   title={title}
                   image={image}
                   price={price}
-                  rating={rating}
+                  editable={false}
                 />
               </Link>
             </Grid>
@@ -110,7 +105,7 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
               </Grid>
             </Grid>
           )}
-        </Grid>
+        </>
       )}
     </>
   )

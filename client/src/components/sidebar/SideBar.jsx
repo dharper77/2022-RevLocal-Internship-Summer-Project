@@ -4,7 +4,7 @@ import {
   selectCategory,
   unselectCategory
 } from '../../store/reducers/selectCategoriesReducer'
-import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
+import { Checkbox, FormControlLabel, FormGroup, Grid } from '@mui/material'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -20,7 +20,7 @@ const Sidebar = () => {
   }, [])
 
   return (
-    <div className="sidebar">
+    <Grid item className="sidebar" sx={{ padding: '0px', width: '85%' }}>
       <FormGroup>
         {categories.map(category => (
           <FormControlLabel
@@ -36,7 +36,7 @@ const Sidebar = () => {
           />
         ))}
       </FormGroup>
-    </div>
+    </Grid>
   )
 }
 export default Sidebar

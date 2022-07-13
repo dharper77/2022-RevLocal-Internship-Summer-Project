@@ -6,6 +6,8 @@ import LogInPage from './pages/LogInPage'
 import ProductPage from './pages/ProductPage'
 import PostNewProduct from './pages/PostNewProduct'
 import CheckoutPage from './pages/CheckoutPage'
+import ProfilePage from './pages/ProfilePage'
+import EditListing from './pages/EditListing'
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="/products/id/:id" element={<ProductPage />} />
           <Route path="/sell" element={<PostNewProduct />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/myProfile" element={<ProfilePage />} />
+          <Route path="/editListing/id/:id" element={<EditListing />} />
         </Routes>
       </Container>
     </Router>

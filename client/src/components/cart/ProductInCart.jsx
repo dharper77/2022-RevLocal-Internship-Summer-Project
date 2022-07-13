@@ -1,37 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Divider, Grid, Button } from '@mui/material'
 import '../../style/Header.css'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
+import DeleteIcon from '@mui/icons-material/Delete'
 import {
   decrementQuantity,
   incrementQuantity,
   removeFromCart
 } from '../../store/reducers/cartReducer'
-import { useDispatch, useStore } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-const ProductInCart = ({ id, title, image, price, quantity }) => {
+const ProductInCart = ({ id, price, quantity }) => {
   const dispatch = useDispatch()
-  const store = useStore()
-  const state = store.getState()
+  const [product, setProduct] = useState(null)
+
   const removeButtonOnClick = () => {
     quantity === 1
       ? dispatch(removeFromCart({ quantity: 1, product: id, price: price }))
       : dispatch(decrementQuantity({ product: id, price: price }))
   }
 
-  const found = state.cart.cart.find(el => el.product === id)
+  useEffect(() => {
+    if (quantity > 0) {
+      fetch(`/api/v1/products/id/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          setProduct(data[0])
+        })
+        .catch(error => console.log(error))
+    }
+  }, [])
 
   return (
-    found && (
+    product &&
+    quantity > 0 && (
       <>
         <Grid container sx={{ height: '15rem' }}>
           <Grid item xs={4}>
-            <img src={image} alt={title} />
+            <img src={product.image} alt={product.title} />
           </Grid>
           <Grid item xs={8}>
             <h3 className="cart-title">
-              {title.length > 25 ? `${title.substring(0, 25)}...` : title}
+              {product.title.length > 25
+                ? `${product.title.substring(0, 25)}...`
+                : product.title}
             </h3>
             {quantity > 1 ? (
               <p className="cart-price">
@@ -45,7 +58,8 @@ const ProductInCart = ({ id, title, image, price, quantity }) => {
               sx={{
                 height: '5rem',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                paddingBottom: '0px'
               }}
             >
               <Grid item xs={2} sx={{ padding: '0px', maxHeight: '2rem' }}>
@@ -56,22 +70,61 @@ const ProductInCart = ({ id, title, image, price, quantity }) => {
                     removeButtonOnClick()
                   }}
                 >
-                  <RemoveIcon />
+                  <RemoveIcon sx={{ height: '2rem' }} />
                 </Button>
               </Grid>
 
-              <Grid item xs={7} sx={{ padding: '0px', maxHeight: '2rem' }}>
-                <p className="cart-quantity">Quantity: {quantity}</p>
+              <Grid item xs={3} sx={{ padding: '0px', maxHeight: '2rem' }}>
+                <Grid
+                  container
+                  sx={{
+                    padding: '0px',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <Grid item sx={{ padding: '0px' }}>
+                    <p className="cart-quantity">{quantity}</p>
+                  </Grid>
+                </Grid>
               </Grid>
               <Grid item xs={2} sx={{ padding: '0px', maxHeight: '2rem' }}>
                 <Button
                   sx={{ padding: '0px', minWidth: '100%' }}
                   variant="contained"
-                  onClick={() =>
+                  onClick={() => {
                     dispatch(incrementQuantity({ product: id, price: price }))
-                  }
+                    //setQuantity(quantity + 1)
+                  }}
                 >
-                  <AddIcon />
+                  <AddIcon sx={{ height: '2rem' }} />
+                </Button>
+              </Grid>
+              <Grid
+                item
+                xs={3}
+                sx={{ padding: '0px', maxHeight: '2rem', height: '2rem' }}
+              >
+                <Button
+                  sx={{
+                    padding: '0px',
+                    minHeight: '2rem'
+                  }}
+                  onClick={() => {
+                    dispatch(
+                      removeFromCart({
+                        quantity: quantity,
+                        product: id,
+                        price: price
+                      })
+                    )
+                  }}
+                >
+                  <DeleteIcon
+                    sx={{
+                      minWidth: '2rem',
+                      minHeight: '2rem'
+                    }}
+                  />
                 </Button>
               </Grid>
             </Grid>

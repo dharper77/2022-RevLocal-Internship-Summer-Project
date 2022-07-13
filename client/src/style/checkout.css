@@ -1,0 +1,15 @@
+.checkout-products {
+  border: 1px solid black;
+}
+
+.checkout-shipping {
+  margin: 0px;
+}
+
+.checkout-shipping > b {
+  color: green;
+}
+
+.checkout-shipping-text {
+  margin-bottom: 0px;
+}

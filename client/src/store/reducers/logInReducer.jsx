@@ -5,7 +5,7 @@ const initialState = {
     { username: 'xX_Derek_Xx', password: 'ReactIsCool' },
     { username: 'BADASS COOL GUY', password: 'notMyRealPassword' }
   ],
-  loggedInUser: '',
+  loggedInUser: 'Chris', // TODO - switch back to ''
   isLoggedIn: true // TODO - switch back to false!!!
 }
 

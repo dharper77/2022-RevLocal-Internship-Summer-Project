@@ -19,10 +19,23 @@ const Home = () => {
     <>
       <Header />
       <Grid container sx={{ padding: '0px' }}>
-        <Grid item xs={3} className='sidebar-grid'>
+        <Grid
+          container
+          xs={2.5}
+          className="sidebar-grid"
+          sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+        >
           <Sidebar />
         </Grid>
-        <Grid item xs={9}>
+        <Grid
+          container
+          columnSpacing={2}
+          rowSpacing={2}
+          xs={9.5}
+          className="products"
+          justifyContent="flex-start"
+          sx={{ paddingTop: '25px', width: '100%' }}
+        >
           <Products />
         </Grid>
       </Grid>
