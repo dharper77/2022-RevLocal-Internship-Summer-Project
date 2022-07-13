@@ -1,26 +1,28 @@
-import { Autocomplete, Button, Grid, TextField } from '@mui/material'
+import {
+  Alert,
+  Autocomplete,
+  Button,
+  Grid,
+  Snackbar,
+  TextField
+} from '@mui/material'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import '../style/PostNewProduct.css'
-import {
-  setAllProps,
-  setCategory,
-  setDescription,
-  setImage,
-  setPrice,
-  setTitle
-} from '../store/reducers/editListingReducer'
+import { setAllProps } from '../store/reducers/editListingReducer'
 import Header from '../components/header/Header'
 import { useParams } from 'react-router-dom'
-import Alert from '../components/buttons/Alert'
+import ConfirmDelete from '../components/buttons/ConfirmDelete'
 
-const EditListing = (seller, title, price, description, category, image) => {
+const EditListing = () => {
   const dispatch = useDispatch()
   const [categories, setCategories] = useState([])
   const [product, setProduct] = useState(null)
   const [open, setOpen] = useState(false)
   const { id } = useParams()
+
+  let updatedFields = {}
 
   useEffect(() => {
     fetch('/api/v1/products/categories')
@@ -39,26 +41,15 @@ const EditListing = (seller, title, price, description, category, image) => {
 
   const handleUpdate = async () => {
     try {
-      await axios.post('/api/v1/products', {
-        seller,
-        title,
-        price,
-        description,
-        category,
-        image,
-        rating: {
-          rate: 0,
-          count: 0
-        }
-      })
+      await axios.patch(`/api/v1/products/id/${id}`, updatedFields)
+      setOpen(true)
     } catch (err) {
       console.log(err.message)
     }
   }
 
-  const handleDelete = async () => {
-    setOpen(true)
-    return <Alert open={open} handleClose={setOpen(false)} />
+  const handleClose = () => {
+    setOpen(false)
   }
 
   return (
@@ -82,7 +73,7 @@ const EditListing = (seller, title, price, description, category, image) => {
               defaultValue={product.title}
               fullWidth
               size="small"
-              onChange={event => dispatch(setTitle(event.target.value))}
+              onChange={event => (updatedFields.title = event.target.value)}
             />
 
             <h3 style={{ marginTop: '3rem' }}>Description</h3>
@@ -91,7 +82,9 @@ const EditListing = (seller, title, price, description, category, image) => {
               fullWidth
               multiline
               id="description"
-              onChange={event => dispatch(setDescription(event.target.value))}
+              onChange={event =>
+                (updatedFields.description = event.target.value)
+              }
             />
           </Grid>
 
@@ -102,7 +95,7 @@ const EditListing = (seller, title, price, description, category, image) => {
               defaultValue={product.image}
               fullWidth
               size="small"
-              onChange={event => dispatch(setImage(event.target.value))}
+              onChange={event => (updatedFields.image = event.target.value)}
             />
 
             <Grid
@@ -126,7 +119,9 @@ const EditListing = (seller, title, price, description, category, image) => {
                   forcePopupIcon
                   fullWidth
                   options={categories}
-                  onInputChange={(event, input) => dispatch(setCategory(input))}
+                  onInputChange={(event, input) =>
+                    (updatedFields.category = input)
+                  }
                   renderInput={params => <TextField {...params} label="" />}
                 />
               </Grid>
@@ -141,20 +136,11 @@ const EditListing = (seller, title, price, description, category, image) => {
                   fullWidth
                   id="price"
                   size="small"
-                  onChange={event => dispatch(setPrice(event.target.value))}
+                  onChange={event => (updatedFields.price = event.target.value)}
                 />
               </Grid>
               <Grid item xs={5.5} sx={{ padding: '0px' }}>
-                <Button
-                  variant="contained"
-                  onClick={() => handleDelete()}
-                  fullWidth
-                  id="submit"
-                  color="error"
-                  sx={{ marginTop: '3rem' }}
-                >
-                  Delete Listing
-                </Button>
+                <ConfirmDelete />
               </Grid>
               <Grid item xs={5.5} sx={{ padding: '0px' }}>
                 <Button
@@ -170,20 +156,25 @@ const EditListing = (seller, title, price, description, category, image) => {
             </Grid>
           </Grid>
         </Grid>
+
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={open}
+          autoHideDuration={6000}
+          onClose={() => setOpen(false)}
+          sx={{ height: '2.5rem' }}
+        >
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: '100%', opacity: '100' }}
+          >
+            Successfully updated listing!
+          </Alert>
+        </Snackbar>
       </>
     )
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    seller: state.logIn.loggedInUser,
-    title: state.editProductListingDraft.title,
-    price: state.editProductListingDraft.price,
-    description: state.editProductListingDraft.description,
-    category: state.editProductListingDraft.category,
-    image: state.editProductListingDraft.image
-  }
-}
-
-export default connect(mapStateToProps)(EditListing)
+export default EditListing

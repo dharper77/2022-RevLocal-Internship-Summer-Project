@@ -30,7 +30,7 @@ exports.getProductsBySeller = async (req, res, next) => {
   try {
     const products = await Product.paginate(
       { seller: req.params.seller },
-      { page: req.params.page, limit: 12 }
+      { page: req.params.page, limit: req.query.limit }
     )
     res.status(200).json(products)
   } catch (err) {
@@ -83,6 +83,19 @@ exports.postNewProduct = async (req, res, next) => {
       }
     })
     await product.save()
+    res.status(200).end()
+  } catch (err) {
+    res.json({ message: err })
+  }
+}
+
+exports.updateProductListing = async (req, res, next) => {
+  try {
+    const editedProduct = await Product.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body
+    )
+    await editedProduct.save()
     res.status(200).end()
   } catch (err) {
     res.json({ message: err })

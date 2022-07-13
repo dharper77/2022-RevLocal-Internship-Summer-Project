@@ -18,4 +18,6 @@ router.route('/id/:id').get(productController.getProductById)
 
 router.route('/').post(productController.postNewProduct)
 
+router.route('/id/:id').patch(productController.updateProductListing)
+
 module.exports = router

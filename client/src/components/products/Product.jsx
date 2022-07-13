@@ -11,7 +11,11 @@ const Product = ({ id, title, image, price, editable }) => {
       <Grid
         container
         className="product-listing"
-        sx={{ maxHeight: '400px', width: '100%', margin: '0px' }}
+        sx={{
+          maxHeight: '400px',
+          width: '100%',
+          margin: '0px'
+        }}
       >
         <img className="product-listing-image" src={image} alt={title} />
         <Grid item>
