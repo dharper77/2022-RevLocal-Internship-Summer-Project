@@ -6,6 +6,11 @@ import { Link } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
 import '../../style/products.css'
 import { setTotalPages } from '../../store/reducers/pageReducer'
+import { resetSearchBarInput } from '../../store/reducers/searchBarReducer'
+import {
+  resetCategories,
+  setIsFetchingProducts
+} from '../../store/reducers/selectCategoriesReducer'
 
 const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
   const dispatch = useDispatch()
@@ -25,18 +30,22 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
       .catch(error => console.log(error))
   }
 
-  const fetchProductsByCategory = () => {
+  const fetchProductsByCategory = async () => {
     let categories = ''
     for (let i = 0; i < selectedCategories.length; i++) {
       categories += `${selectedCategories[i]},`
     }
-    fetch(`/api/v1/products/page/${currentPage}/category/${categories}`)
+    dispatch(setIsFetchingProducts(true))
+    await fetch(`/api/v1/products/page/${currentPage}/category/${categories}`)
       .then(response => response.json())
       .then(data => {
         setProducts(data.docs)
         dispatch(setTotalPages(data.totalPages))
       })
-      .then(setIsLoading(false))
+      .then(() => {
+        setIsLoading(false)
+        dispatch(setIsFetchingProducts(false))
+      })
       .catch(error => console.log(error))
   }
 
@@ -80,7 +89,13 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
         <>
           {products.map(({ _id, title, image, price }) => (
             <Grid item xs={4} sx={{ paddingTop: '0px' }} key={_id}>
-              <Link to={`/products/id/${_id}`}>
+              <Link
+                to={`/products/id/${_id}`}
+                onClick={() => {
+                  dispatch(resetSearchBarInput())
+                  dispatch(resetCategories())
+                }}
+              >
                 <Product
                   id={_id}
                   title={title}

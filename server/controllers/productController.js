@@ -1,7 +1,7 @@
 const fs = require('fs')
 const Product = require('../database/models/Product')
 
-exports.getProductsByPage = async (req, res, next) => {
+exports.getProductsByPage = async (req, res) => {
   try {
     const products = await Product.paginate(
       {},
@@ -13,7 +13,7 @@ exports.getProductsByPage = async (req, res, next) => {
   }
 }
 
-exports.getProductsByCategory = async (req, res, next) => {
+exports.getProductsByCategory = async (req, res) => {
   try {
     const selectedCategories = req.params.category.split(',')
     const products = await Product.paginate(
@@ -26,10 +26,10 @@ exports.getProductsByCategory = async (req, res, next) => {
   }
 }
 
-exports.getProductsBySeller = async (req, res, next) => {
+exports.getProductsBySeller = async (req, res) => {
   try {
     const products = await Product.paginate(
-      { seller: req.params.seller },
+      { 'seller.id': req.params.seller },
       { page: req.params.page, limit: req.query.limit }
     )
     res.status(200).json(products)
@@ -38,7 +38,7 @@ exports.getProductsBySeller = async (req, res, next) => {
   }
 }
 
-exports.getProductById = async (req, res, next) => {
+exports.getProductById = async (req, res) => {
   try {
     const product = await Product.find({ _id: req.params.id })
     res.status(200).json(product)
@@ -47,7 +47,7 @@ exports.getProductById = async (req, res, next) => {
   }
 }
 
-exports.getProductsByTitle = async (req, res, next) => {
+exports.getProductsByTitle = async (req, res) => {
   try {
     const products = await Product.paginate(
       { title: { $regex: req.params.title, $options: 'i' } },
@@ -59,7 +59,7 @@ exports.getProductsByTitle = async (req, res, next) => {
   }
 }
 
-exports.getCategories = async (req, res, next) => {
+exports.getCategories = async (req, res) => {
   try {
     const categories = await Product.find().distinct('category')
     res.status(200).json({ categories })
@@ -68,10 +68,13 @@ exports.getCategories = async (req, res, next) => {
   }
 }
 
-exports.postNewProduct = async (req, res, next) => {
+exports.postNewProduct = async (req, res) => {
   try {
     const product = new Product({
-      id: req.body.id,
+      seller: {
+        id: req.body.seller.id,
+        name: req.body.seller.name
+      },
       title: req.body.title,
       price: req.body.price,
       description: req.body.description,
@@ -83,13 +86,13 @@ exports.postNewProduct = async (req, res, next) => {
       }
     })
     await product.save()
-    res.status(200).end()
+    res.status(200).json(product._id)
   } catch (err) {
     res.json({ message: err })
   }
 }
 
-exports.updateProductListing = async (req, res, next) => {
+exports.updateProductListing = async (req, res) => {
   try {
     const editedProduct = await Product.findOneAndUpdate(
       { _id: req.params.id },

@@ -13,7 +13,8 @@ import {
 import Header from '../components/header/Header'
 
 const PostNewProduct = ({
-  seller,
+  sellerId,
+  sellerName,
   title,
   price,
   description,
@@ -33,7 +34,10 @@ const PostNewProduct = ({
   const handleSubmit = async () => {
     try {
       await axios.post('/api/v1/products', {
-        seller,
+        seller: {
+          id: sellerId,
+          name: sellerName
+        },
         title,
         price,
         description,
@@ -146,7 +150,8 @@ const PostNewProduct = ({
 
 const mapStateToProps = state => {
   return {
-    seller: state.logIn.loggedInUser,
+    sellerId: state.logIn.loggedInUser.userId,
+    sellerName: state.logIn.loggedInUser.username,
     title: state.newProductListingDraft.title,
     price: state.newProductListingDraft.price,
     description: state.newProductListingDraft.description,

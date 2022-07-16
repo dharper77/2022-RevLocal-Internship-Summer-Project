@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { resetCategories } from '../store/reducers/selectCategoriesReducer'
 import { useEffect } from 'react'
 
-const Home = () => {
+const HomePage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -45,4 +45,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

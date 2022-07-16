@@ -79,7 +79,7 @@ export const ProfilePage = ({ seller }) => {
 
 export const mapStateToProps = state => {
   return {
-    seller: state.logIn.loggedInUser
+    seller: state.logIn.loggedInUser.userId
   }
 }
 export default connect(mapStateToProps)(ProfilePage)

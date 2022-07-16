@@ -55,10 +55,14 @@ import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import Img from '../../store/imgs/avatar2.jpg'
+import { useDispatch } from 'react-redux'
+import { logOut } from '../../store/reducers/logInReducer'
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
+  const dispatch = useDispatch()
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -77,7 +81,11 @@ export default function AccountMenu() {
           aria-expanded={open ? 'true' : undefined}
         >
           <Avatar
-            sx={{ width: '2.5rem', height: '2.5rem', padding: '0px' }}
+            sx={{
+              width: '2.5rem',
+              height: '2.5rem',
+              padding: '0px'
+            }}
             src={Img}
           />
         </IconButton>
@@ -132,7 +140,7 @@ export default function AccountMenu() {
             <Settings fontSize="small" sx={{ paddingLeft: '1.4rem' }} />
           </ListItemIcon>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => dispatch(logOut())}>
           Logout
           <ListItemIcon sx={{ padding: '0px' }}>
             <Logout fontSize="small" sx={{ paddingLeft: '2rem' }} />

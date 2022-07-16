@@ -29,7 +29,7 @@ const Product = ({ id, title, image, price, editable }) => {
           sx={{ paddingTop: '0px', paddingRight: '0px' }}
         >
           <Grid item sx={{ padding: '0px' }}>
-            <h3 className="price">${price}</h3>
+            <h3 className="price">${price.toFixed(2)}</h3>
           </Grid>
           {editable && (
             <Grid item>

@@ -7,8 +7,9 @@ import {
 import { Checkbox, FormControlLabel, FormGroup, Grid } from '@mui/material'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { connect } from 'react-redux'
 
-const Sidebar = () => {
+const Sidebar = isFetchingProducts => {
   const dispatch = useDispatch()
   const [categories, setCategories] = useState([])
 
@@ -26,17 +27,24 @@ const Sidebar = () => {
           <FormControlLabel
             key={category}
             control={<Checkbox />}
-            onClick={event =>
+            onClick={event => {
               event.target.checked
                 ? dispatch(selectCategory(category))
                 : dispatch(unselectCategory(category))
-            }
+            }}
             label={category}
             className="link"
+            disabled={isFetchingProducts.isFetchingProducts}
           />
         ))}
       </FormGroup>
     </Grid>
   )
 }
-export default Sidebar
+
+const mapStateToProps = state => {
+  return {
+    isFetchingProducts: state.selectedCategories.isFetchingProducts
+  }
+}
+export default connect(mapStateToProps)(Sidebar)

@@ -101,8 +101,8 @@ div {
 }
 
 .link:hover {
-  background-color: #e8f5fe;
-  color: #50b7f5;
+  background-color: rgb(176, 176, 176);
+  color: blue;
   transition: color 100ms ease-out;
 }
 
@@ -115,8 +115,6 @@ div {
 .sidebar {
   border-radius: 10px;
   width: 75%;
-  position: sticky;
-  top: 0px;
   justify-content: center;
   padding: 20px 20px;
   margin: 0px auto 0 auto;

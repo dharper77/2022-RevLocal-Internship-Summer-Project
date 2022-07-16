@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux'
 import ProductInCart from '../components/cart/ProductInCart'
 import '../style/checkout.css'
+import { useNavigate } from 'react-router-dom'
 
 export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
   const [value, setValue] = React.useState('')
@@ -23,8 +24,9 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
   let tax = 0.0
 
   const nextDayPrice = (subtotal * 0.5).toFixed(2)
-
   const threeDayPrice = (subtotal * 0.2).toFixed(2)
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -48,7 +50,7 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
               ))}
             </>
           ) : (
-            <h1>Cart is Empty</h1>
+            navigate('/')
           )}
           <h3 className="checkout-shipping-text">Shipping</h3>
           <Grid
@@ -173,6 +175,65 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
                 label="Last Name"
                 size="medium"
                 className="checkout-input"
+                sx={{ width: '100%' }}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            sx={{
+              justifyContent: 'space-evenly',
+              padding: '0px',
+              paddingTop: '1rem'
+            }}
+          >
+            <Grid item sx={{ padding: '0px' }} xs={5.5}>
+              <TextField
+                label="Street Address"
+                size="medium"
+                className="checkout-input"
+                sx={{ width: '100%' }}
+              />
+            </Grid>
+            <Grid item sx={{ padding: '0px' }} xs={5.5}>
+              <TextField
+                label="Street Address (optional)"
+                size="medium"
+                className="checkout-input"
+                sx={{ width: '100%' }}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            sx={{
+              justifyContent: 'space-evenly',
+              padding: '0px',
+              paddingTop: '1rem'
+            }}
+          >
+            <Grid item sx={{ padding: '0px' }} xs={3.5}>
+              <TextField
+                label="City"
+                size="medium"
+                className="checkout-input"
+                sx={{ width: '100%' }}
+              />
+            </Grid>
+            <Grid item sx={{ padding: '0px' }} xs={3.5}>
+              <TextField
+                label="State"
+                size="medium"
+                className="checkout-input"
+                sx={{ width: '100%' }}
+              />
+            </Grid>
+            <Grid item sx={{ padding: '0px' }} xs={3.5}>
+              <TextField
+                label="ZIP code"
+                size="medium"
+                className="checkout-input"
+                type="number"
                 sx={{ width: '100%' }}
               />
             </Grid>

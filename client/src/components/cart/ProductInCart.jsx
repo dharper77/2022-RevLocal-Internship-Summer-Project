@@ -48,10 +48,11 @@ const ProductInCart = ({ id, price, quantity }) => {
             </h3>
             {quantity > 1 ? (
               <p className="cart-price">
-                {`$${price * quantity}  ($${price} x ${quantity})`}
+                ${(price * quantity).toFixed(2)} (${price.toFixed(2)} x{' '}
+                {quantity})
               </p>
             ) : (
-              <p className="cart-price">{`$${price * quantity}`}</p>
+              <p className="cart-price">${(price * quantity).toFixed(2)}</p>
             )}
             <Grid
               container

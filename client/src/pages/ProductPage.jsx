@@ -45,7 +45,7 @@ const ProductPage = () => {
 
             {/* Price and rating */}
             <div className="price-and-rating">
-              <h3 className="product-price">${product.price}</h3>
+              <h3 className="product-price">${product.price.toFixed(2)}</h3>
               {product && product.rating && (
                 <Rating
                   className="rating"

@@ -10,10 +10,13 @@ export const searchBarSlice = createSlice({
   reducers: {
     setSearchBarInput: (state, action) => {
       state.input = action.payload.input
+    },
+    resetSearchBarInput: state => {
+      state.input = initialState.input
     }
   }
 })
 
-export const { setSearchBarInput } = searchBarSlice.actions
+export const { setSearchBarInput, resetSearchBarInput } = searchBarSlice.actions
 
 export default searchBarSlice.reducer

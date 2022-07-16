@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  selectedCategories: []
+  selectedCategories: [],
+  isFetchingProducts: false
 }
 
 export const selectCategorySlice = createSlice({
@@ -18,6 +19,9 @@ export const selectCategorySlice = createSlice({
     },
     resetCategories: state => {
       state.selectedCategories = []
+    },
+    setIsFetchingProducts: (state, action) => {
+      state.isFetchingProducts = action.payload
     }
   }
 })
@@ -25,7 +29,8 @@ export const selectCategorySlice = createSlice({
 export const {
   selectCategory,
   unselectCategory,
-  resetCategories
+  resetCategories,
+  setIsFetchingProducts
 } = selectCategorySlice.actions
 
 export default selectCategorySlice.reducer

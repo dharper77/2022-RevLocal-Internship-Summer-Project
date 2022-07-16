@@ -1,23 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  users: [
-    { username: 'xX_Derek_Xx', password: 'ReactIsCool' },
-    { username: 'BADASS COOL GUY', password: 'notMyRealPassword' }
-  ],
-  loggedInUser: 'Chris', // TODO - switch back to ''
-  isLoggedIn: true // TODO - switch back to false!!!
+  loggedInUser: {
+    userId: '',
+    username: '',
+    firstName: '',
+    lastName: ''
+  },
+  isLoggedIn: false
 }
 
 export const logInSlice = createSlice({
   name: 'logIn',
   initialState,
   reducers: {
-    logIn: state => {
+    logIn: (state, action) => {
       state.isLoggedIn = true
+      state.loggedInUser = action.payload
     },
     logOut: state => {
       state.isLoggedIn = false
+      state.loggedInUser = initialState.loggedInUser
     }
   }
 })
