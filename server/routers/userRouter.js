@@ -10,7 +10,8 @@ router
 router.route('/').post(userController.createNewUser)
 
 router
-  .route('/:userId/shippingAddress')
+  .route('/id/:userId/shippingAddress')
   .patch(userController.updateShippingAddress)
+  .get(userController.getShippingAddress)
 
 module.exports = router

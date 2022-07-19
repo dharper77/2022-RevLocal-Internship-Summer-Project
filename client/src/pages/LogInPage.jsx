@@ -7,8 +7,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 const LogInPage = () => {
-  const [username, setUsername] = useState(null)
-  const [password, setPassword] = useState(null)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [helperText, setHelperText] = useState('')
   const [error, setError] = useState(false)
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true)
@@ -25,26 +25,32 @@ const LogInPage = () => {
               userId: user._id,
               username: user.username,
               firstName: user.firstName,
-              lastName: user.lastName
+              lastName: user.lastName,
+              isShopSetUp: user.selling.isShopSetUp
             })
           )
           navigate('/')
         } else {
-          setUsername(null)
-          setPassword(null)
           setHelperText('Username or password are incorrect')
           setError(true)
         }
       })
   }
 
+  const handleClickAfterError = () => {
+    if (error) {
+      setError(false)
+      setHelperText('')
+    }
+  }
+
   useEffect(() => {
-    if (username && password) {
+    if (username && password && !error) {
       setIsLoginButtonDisabled(false)
     } else {
       setIsLoginButtonDisabled(true)
     }
-  }, [username, password])
+  }, [username, password, error])
 
   return (
     <Grid container justifyContent="center">
@@ -73,6 +79,7 @@ const LogInPage = () => {
           <Grid item xs={12}>
             <TextField
               onChange={event => setUsername(event.target.value)}
+              onClick={() => handleClickAfterError()}
               error={error}
               required
               size="medium"
@@ -85,6 +92,7 @@ const LogInPage = () => {
           <Grid item xs={12}>
             <TextField
               onChange={event => setPassword(event.target.value)}
+              onClick={() => handleClickAfterError()}
               error={error}
               helperText={helperText}
               required
@@ -112,91 +120,5 @@ const LogInPage = () => {
     </Grid>
   )
 }
-
-// <div className="logInPage">
-//   <Grid container alignItems="center" sx={{ padding: '0px' }}>
-//     <Grid item xs={2}>
-//       <Button
-//         className="back-button"
-//         variant="contained"
-//         component={Link}
-//         to="/"
-//         startIcon={<ArrowBackIcon />}
-//       >
-//         Back to Home
-//       </Button>
-//     </Grid>
-//   </Grid>
-//   {/* Username */}
-//   <Grid
-//     container
-//     spacing={0}
-//     direction="column"
-//     alignItems="center"
-//     justifyContent="center"
-//     sx={{ padding: '0px' }}
-//   >
-//     <Grid item xs={2}>
-//       <TextField
-//         value={username}
-//         label="Username"
-//         error={error}
-//         type="text"
-//         size="small"
-//         className="loginPage-input"
-//         onChange={event => {
-//           setError(false)
-//           setHelperText('')
-//           setUsername(event.target.value)
-//         }}
-//       />
-//     </Grid>
-//   </Grid>
-
-//   {/* Password */}
-//   <Grid
-//     container
-//     spacing={0}
-//     direction="column"
-//     alignItems="center"
-//     justifyContent="center"
-//     sx={{ padding: '0px' }}
-//   >
-//     <Grid item xs={2}>
-//       <TextField
-//         className="loginPage-input"
-//         label="Password"
-//         helperText={helperText}
-//         error={error}
-//         type="password"
-//         size="small"
-//         onChange={event => {
-//           setError(false)
-//           setHelperText('')
-//           setPassword(event.target.value)
-//         }}
-//       />
-//     </Grid>
-//   </Grid>
-
-//   {/* Log in button */}
-//   <Grid
-//     container
-//     spacing={0}
-//     direction="column"
-//     alignItems="center"
-//     justifyContent="center"
-//     sx={{ padding: '0px' }}
-//   >
-//     <Grid item xs={3}>
-
-//     </Grid>
-//     <Grid item xs={3}>
-//       <Button variant="contained" component={Link} to="/registerUser">
-//         Sign Up
-//       </Button>
-//     </Grid>
-//   </Grid>
-// </div>
 
 export default LogInPage

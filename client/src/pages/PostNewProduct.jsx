@@ -1,4 +1,11 @@
-import { Autocomplete, Button, Grid, TextField } from '@mui/material'
+import {
+  Alert,
+  Autocomplete,
+  Button,
+  Grid,
+  Snackbar,
+  TextField
+} from '@mui/material'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
@@ -23,6 +30,7 @@ const PostNewProduct = ({
 }) => {
   const dispatch = useDispatch()
   const [categories, setCategories] = useState([])
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     fetch('/api/v1/products/categories')
@@ -48,6 +56,7 @@ const PostNewProduct = ({
           count: 0
         }
       })
+      setOpen(true)
     } catch (err) {
       console.log(err.message)
     }
@@ -144,6 +153,22 @@ const PostNewProduct = ({
           </Grid>
         </Grid>
       </Grid>
+
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={() => setOpen(false)}
+        sx={{ height: '2.5rem' }}
+      >
+        <Alert
+          onClose={() => setOpen(false)}
+          severity="success"
+          sx={{ width: '100%', opacity: '100' }}
+        >
+          Successfully listed!
+        </Alert>
+      </Snackbar>
     </>
   )
 }

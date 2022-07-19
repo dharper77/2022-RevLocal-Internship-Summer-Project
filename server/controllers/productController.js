@@ -104,3 +104,12 @@ exports.updateProductListing = async (req, res) => {
     res.json({ message: err })
   }
 }
+
+exports.deleteProductListing = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id)
+    res.status(200).end()
+  } catch (err) {
+    res.json({ message: err })
+  }
+}

@@ -20,6 +20,6 @@
     "mongoose-paginate-v2": "^1.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.19"
   }
 }

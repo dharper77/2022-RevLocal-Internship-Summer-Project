@@ -11,7 +11,8 @@ exports.createNewUser = async (req, res) => {
       lastName: req.body.lastName,
       shipping: {
         address: {
-          street: undefined,
+          street1: undefined,
+          street2: undefined,
           city: undefined,
           state: undefined,
           zipCode: undefined
@@ -19,7 +20,8 @@ exports.createNewUser = async (req, res) => {
       },
       billing: {
         address: {
-          street: undefined,
+          street1: undefined,
+          street2: undefined,
           city: undefined,
           state: undefined,
           zipCode: undefined
@@ -29,6 +31,7 @@ exports.createNewUser = async (req, res) => {
         ccv: undefined
       },
       selling: {
+        isShopSetUp: false,
         listings: [],
         routing: undefined,
         storeRating: undefined
@@ -66,6 +69,16 @@ exports.updateShippingAddress = async (req, res) => {
     )
     await editedShippingAddress.save()
     res.status(200).end()
+  } catch (err) {
+    res.json({ message: err })
+  }
+}
+
+exports.getShippingAddress = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId)
+    const shippingAddress = user.shipping.address
+    res.status(200).json(shippingAddress)
   } catch (err) {
     res.json({ message: err })
   }

@@ -7,9 +7,11 @@ import {
   DialogActions,
   Button
 } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
-const ConfirmDelete = () => {
+const ConfirmDelete = ({ handleDelete }) => {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -24,18 +26,25 @@ const ConfirmDelete = () => {
         Delete Listing
       </Button>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+      <Dialog
+        sx={{ height: '300px' }}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <DialogTitle>Are you sure you wish to delete this listing?</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
+          <DialogContentText>This action cannot be undone.</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)}>Disagree</Button>
-          <Button onClick={() => setOpen(false)} autoFocus>
-            Agree
+          <Button onClick={() => setOpen(false)}>No</Button>
+          <Button
+            onClick={() => {
+              handleDelete()
+              navigate('/')
+            }}
+            autoFocus
+          >
+            Yes
           </Button>
         </DialogActions>
       </Dialog>

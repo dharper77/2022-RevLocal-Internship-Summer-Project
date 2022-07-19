@@ -24,6 +24,23 @@ const EditListing = () => {
 
   let updatedFields = {}
 
+  const handleUpdate = async () => {
+    try {
+      await axios.patch(`/api/v1/products/id/${id}`, updatedFields)
+      setOpen(true)
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/api/v1/products/id/${id}`)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
     fetch('/api/v1/products/categories')
       .then(response => response.json())
@@ -38,19 +55,6 @@ const EditListing = () => {
       })
       .catch(error => console.log(error))
   }, [])
-
-  const handleUpdate = async () => {
-    try {
-      await axios.patch(`/api/v1/products/id/${id}`, updatedFields)
-      setOpen(true)
-    } catch (err) {
-      console.log(err.message)
-    }
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
 
   return (
     product && (
@@ -140,7 +144,7 @@ const EditListing = () => {
                 />
               </Grid>
               <Grid item xs={5.5} sx={{ padding: '0px' }}>
-                <ConfirmDelete />
+                <ConfirmDelete handleDelete={handleDelete} />
               </Grid>
               <Grid item xs={5.5} sx={{ padding: '0px' }}>
                 <Button
@@ -165,7 +169,7 @@ const EditListing = () => {
           sx={{ height: '2.5rem' }}
         >
           <Alert
-            onClose={handleClose}
+            onClose={() => setOpen(false)}
             severity="success"
             sx={{ width: '100%', opacity: '100' }}
           >

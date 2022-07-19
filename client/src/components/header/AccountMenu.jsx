@@ -1,48 +1,3 @@
-// import React from 'react'
-// import { Grid, Tooltip, MenuList, Menu, MenuItem } from '@mui/material'
-// import IconButton from '@mui/material/IconButton'
-// import Avatar from '@mui/material/Avatar'
-// import Img from '../../store/imgs/avatar.jpg'
-
-// const MyAccount = () => {
-//   const [anchorEl, setAnchorEl] = React.useState(null)
-//   const open = Boolean(anchorEl)
-//   const handleClick = event => {
-//     setAnchorEl(event.currentTarget)
-//   }
-//   const handleClose = () => {
-//     setAnchorEl(null)
-//   }
-//   return (
-//     <Grid
-//       container
-//       sx={{
-//         padding: '0px'
-//       }}
-//     >
-//       <Grid item justifyContent="center" sx={{ padding: '26px' }}>
-//         <Tooltip title="Account Settings">
-//           <IconButton sx={{ padding: '0px' }} onClick={handleClick}>
-//             <Avatar
-//               src={Img}
-//               sx={{ width: '2.5rem', height: '2.5rem', padding: '0px' }}
-//             />
-//           </IconButton>
-//         </Tooltip>
-//       </Grid>
-//       <Menu
-//         anchorEl={anchorEl}
-//         open={open}
-//         onClose={handleClose}
-//         onClick={handleClose}
-//       >
-//         <MenuItem>Selling</MenuItem>
-//       </Menu>
-//     </Grid>
-//   )
-// }
-
-// export default MyAccount
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
@@ -55,10 +10,10 @@ import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import Img from '../../store/imgs/avatar2.jpg'
-import { useDispatch } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { logOut } from '../../store/reducers/logInReducer'
 
-export default function AccountMenu() {
+const AccountMenu = isShopSetUp => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const dispatch = useDispatch()
@@ -69,6 +24,7 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -130,9 +86,17 @@ export default function AccountMenu() {
         <Link to="/myProfile">
           <MenuItem>Profile</MenuItem>
         </Link>
-        <Link to="/sell">
-          <MenuItem>Sell</MenuItem>
-        </Link>
+
+        {isShopSetUp.isShopSetUp ? (
+          <Link to="/sell">
+            <MenuItem>Sell</MenuItem>
+          </Link>
+        ) : (
+          <Link to="/setUpShop">
+            <MenuItem>Set Up Shop</MenuItem>
+          </Link>
+        )}
+
         <Divider sx={{ marginTop: '0.75rem', marginBottom: '0.75rem' }} />
         <MenuItem>
           Settings
@@ -141,12 +105,21 @@ export default function AccountMenu() {
           </ListItemIcon>
         </MenuItem>
         <MenuItem onClick={() => dispatch(logOut())}>
-          Logout
-          <ListItemIcon sx={{ padding: '0px' }}>
-            <Logout fontSize="small" sx={{ paddingLeft: '2rem' }} />
-          </ListItemIcon>
+          <Link to="/">
+            Logout
+            <ListItemIcon sx={{ padding: '0px' }}>
+              <Logout fontSize="small" sx={{ paddingLeft: '2rem' }} />
+            </ListItemIcon>
+          </Link>
         </MenuItem>
       </Menu>
     </React.Fragment>
   )
 }
+
+const mapStateToProps = state => {
+  return {
+    isShopSetUp: state.logIn.loggedInUser.isShopSetUp
+  }
+}
+export default connect(mapStateToProps)(AccountMenu)

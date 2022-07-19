@@ -20,6 +20,7 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchAllProducts = () => {
+    setIsLoading(true)
     fetch(`/api/v1/products/page/${currentPage}`)
       .then(response => response.json())
       .then(data => {
@@ -31,6 +32,7 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
   }
 
   const fetchProductsByCategory = async () => {
+    setIsLoading(true)
     let categories = ''
     for (let i = 0; i < selectedCategories.length; i++) {
       categories += `${selectedCategories[i]},`
@@ -49,35 +51,42 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
       .catch(error => console.log(error))
   }
 
+  const fetchProductsBySearch = () => {
+    setIsLoading(true)
+    fetch(`/api/v1/products/page/${currentPage}/title/${searchBarInput}`)
+      .then(response => response.json())
+      .then(data => {
+        setProducts(data.docs)
+        dispatch(setTotalPages(data.totalPages))
+      })
+      .then(setIsLoading(false))
+      .catch(error => console.log(error))
+  }
+
   useEffect(() => {
-    if (selectedCategories.length === 0) {
+    if (selectedCategories.length === 0 && !searchBarInput) {
       fetchAllProducts()
-    } else {
+    } else if (selectedCategories.length > 0 && !searchBarInput) {
       fetchProductsByCategory()
+    } else {
+      fetchProductsBySearch()
     }
   }, [currentPage])
 
   useEffect(() => {
-    if (selectedCategories.length === 0) {
+    if (selectedCategories.length === 0 && !searchBarInput) {
       fetchAllProducts()
-    } else {
+    } else if (selectedCategories.length > 0 && !searchBarInput) {
       setCurrentPage(1)
       fetchProductsByCategory()
     }
   }, [selectedCategories])
 
   useEffect(() => {
-    if (searchBarInput === '') {
+    if (!searchBarInput) {
       fetchAllProducts()
     } else {
-      fetch(`/api/v1/products/page/${currentPage}/title/${searchBarInput}`)
-        .then(response => response.json())
-        .then(data => {
-          setProducts(data.docs)
-          dispatch(setTotalPages(data.totalPages))
-        })
-        .then(setIsLoading(false))
-        .catch(error => console.log(error))
+      fetchProductsBySearch()
     }
   }, [searchBarInput])
 
@@ -85,6 +94,13 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
     <>
       {isLoading ? (
         <h1>Loading...</h1>
+      ) : searchBarInput && products.length === 0 ? (
+        <>
+          <h1
+            style={{ padding: '0px' }}
+          >{`Sorry, we couldn't find any results for '${searchBarInput}'...`}</h1>
+          <h3>Please try searching for something else instead</h3>
+        </>
       ) : (
         <>
           {products.map(({ _id, title, image, price }) => (

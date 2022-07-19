@@ -3,7 +3,7 @@ import Logo from './Logo'
 import SearchBar from './SearchBar'
 import ShoppingCart from './ShoppingCart'
 import { Grid } from '@mui/material'
-import MyAccount from './MyAccount'
+import AccountMenu from './AccountMenu'
 import LoginButton from './LoginButton'
 import { connect } from 'react-redux'
 
@@ -26,7 +26,7 @@ const Header = props => {
 
       {/* log in button or my account */}
       <Grid item xs={2} sx={{ padding: '0px', justifyContent: 'center' }}>
-        {props.isLoggedIn ? <MyAccount /> : <LoginButton />}
+        {props.isLoggedIn ? <AccountMenu /> : <LoginButton />}
       </Grid>
 
       {/* shopping cart */}

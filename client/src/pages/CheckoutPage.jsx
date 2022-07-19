@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Grid,
   Radio,
@@ -6,18 +6,57 @@ import {
   FormControlLabel,
   Divider,
   Button,
-  TextField
+  TextField,
+  Checkbox
 } from '@mui/material'
+import axios from 'axios'
 import { connect } from 'react-redux'
 import ProductInCart from '../components/cart/ProductInCart'
 import '../style/checkout.css'
 import { useNavigate } from 'react-router-dom'
 
-export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
-  const [value, setValue] = React.useState('')
+export const CheckoutPage = ({
+  isLoggedIn,
+  userId,
+  firstName,
+  lastName,
+  cart,
+  subtotal,
+  totalItemsInCart
+}) => {
+  const [value, setValue] = useState('')
+  const [addressIsSaved, setAddressIsSaved] = useState(false)
+
+  const [streetAddress1, setStreetAddress1] = useState('')
+  const [streetAddress2, setStreetAddress2] = useState('')
+  const [state, setState] = useState('')
+  const [city, setCity] = useState('')
+  const [zipCode, setZipCode] = useState(0)
+
+  const navigate = useNavigate()
 
   const handleRadioChange = event => {
     setValue(event.target.value)
+  }
+
+  const handlePlaceOrder = async () => {
+    if (addressIsSaved) {
+      try {
+        axios.patch(`/api/v1/users/id/${userId}/shippingAddress`, {
+          shipping: {
+            address: {
+              street1: streetAddress1,
+              street2: streetAddress2,
+              state,
+              city,
+              zipCode
+            }
+          }
+        })
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 
   let shipping = 0.0
@@ -26,7 +65,26 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
   const nextDayPrice = (subtotal * 0.5).toFixed(2)
   const threeDayPrice = (subtotal * 0.2).toFixed(2)
 
-  const navigate = useNavigate()
+  useEffect(() => {
+    if (cart.length === 0) {
+      navigate('/')
+    }
+  }, [cart])
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetch(`/api/v1/users/id/${userId}/shippingAddress`)
+        .then(response => response.json())
+        .then(data => {
+          setStreetAddress1(data.street1)
+          setStreetAddress2(data.street2)
+          setState(data.state)
+          setCity(data.city)
+          setZipCode(data.zipCode)
+        })
+        .catch(err => console.log(err))
+    }
+  }, [])
 
   return (
     <>
@@ -38,7 +96,7 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
           sx={{ borderRadius: '10px', marginRight: '1rem' }}
         >
           <h3 className="checkout-header">Review Cart and Shipping</h3>
-          {cart.length > 0 ? (
+          {cart.length > 0 && (
             <>
               {cart.map(product => (
                 <ProductInCart
@@ -49,8 +107,6 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
                 />
               ))}
             </>
-          ) : (
-            navigate('/')
           )}
           <h3 className="checkout-shipping-text">Shipping</h3>
           <Grid
@@ -145,7 +201,11 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
               </p>
             </Grid>
           </Grid>
-          <Button variant="contained" className="checkout-button">
+          <Button
+            variant="contained"
+            className="checkout-button"
+            onClick={() => handlePlaceOrder()}
+          >
             Place Order
           </Button>
         </Grid>
@@ -165,6 +225,7 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
             <Grid item sx={{ padding: '0px' }} xs={5.5}>
               <TextField
                 label="First Name"
+                value={firstName}
                 size="medium"
                 className="checkout-input"
                 sx={{ width: '100%' }}
@@ -173,6 +234,7 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
             <Grid item sx={{ padding: '0px' }} xs={5.5}>
               <TextField
                 label="Last Name"
+                value={lastName}
                 size="medium"
                 className="checkout-input"
                 sx={{ width: '100%' }}
@@ -189,7 +251,9 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
           >
             <Grid item sx={{ padding: '0px' }} xs={5.5}>
               <TextField
-                label="Street Address"
+                onChange={event => setStreetAddress1(event.target.value)}
+                value={streetAddress1}
+                label="Street Address 1"
                 size="medium"
                 className="checkout-input"
                 sx={{ width: '100%' }}
@@ -197,7 +261,9 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
             </Grid>
             <Grid item sx={{ padding: '0px' }} xs={5.5}>
               <TextField
-                label="Street Address (optional)"
+                onChange={event => setStreetAddress2(event.target.value)}
+                value={streetAddress2}
+                label="Street Address 2 (optional)"
                 size="medium"
                 className="checkout-input"
                 sx={{ width: '100%' }}
@@ -214,6 +280,8 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
           >
             <Grid item sx={{ padding: '0px' }} xs={3.5}>
               <TextField
+                onChange={event => setCity(event.target.value)}
+                value={city}
                 label="City"
                 size="medium"
                 className="checkout-input"
@@ -222,6 +290,8 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
             </Grid>
             <Grid item sx={{ padding: '0px' }} xs={3.5}>
               <TextField
+                onChange={event => setState(event.target.value)}
+                value={state}
                 label="State"
                 size="medium"
                 className="checkout-input"
@@ -230,6 +300,8 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
             </Grid>
             <Grid item sx={{ padding: '0px' }} xs={3.5}>
               <TextField
+                onChange={event => setZipCode(event.target.value)}
+                value={zipCode}
                 label="ZIP code"
                 size="medium"
                 className="checkout-input"
@@ -237,6 +309,19 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
                 sx={{ width: '100%' }}
               />
             </Grid>
+            {isLoggedIn && (
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={addressIsSaved}
+                      onChange={() => setAddressIsSaved(!addressIsSaved)}
+                    />
+                  }
+                  label="Save this address for future purchases"
+                />
+              </Grid>
+            )}
           </Grid>
         </Grid>
         <Grid item xs={3}></Grid>
@@ -246,6 +331,10 @@ export const CheckoutPage = ({ cart, subtotal, totalItemsInCart }) => {
 }
 export const mapStateToProps = state => {
   return {
+    isLoggedIn: state.logIn.isLoggedIn,
+    userId: state.logIn.loggedInUser.userId,
+    firstName: state.logIn.loggedInUser.firstName,
+    lastName: state.logIn.loggedInUser.lastName,
     cart: state.cart.cart,
     subtotal: state.cart.subtotal,
     totalItemsInCart: state.cart.totalItemsInCart

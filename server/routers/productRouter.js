@@ -14,10 +14,13 @@ router
 router
   .route('/page/:page/seller/:seller')
   .get(productController.getProductsBySeller)
-router.route('/id/:id').get(productController.getProductById)
 
 router.route('/').post(productController.postNewProduct)
 
-router.route('/id/:id').patch(productController.updateProductListing)
+router
+  .route('/id/:id')
+  .get(productController.getProductById)
+  .patch(productController.updateProductListing)
+  .delete(productController.deleteProductListing)
 
 module.exports = router

@@ -5,7 +5,8 @@ const initialState = {
     userId: '',
     username: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
+    isShopSetUp: ''
   },
   isLoggedIn: false
 }

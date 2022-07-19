@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AddToCart from '../components/buttons/AddToCart'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Header from '../components/header/Header'
-import { Grid } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import Rating from '@mui/material/Rating'
 import SelectQuantity from '../components/buttons/SelectQuantity'
 import { useDispatch } from 'react-redux'
@@ -41,6 +41,16 @@ const ProductPage = () => {
             {/* Product title */}
             <div>
               <h3 className="product-title">{product.title}</h3>
+              {product && product.seller && (
+                <Link to={`/seller/${product.seller.id}`}>
+                  <Typography
+                    sx={{ marginTop: '1rem', marginBottom: '0px' }}
+                    paragraph
+                  >
+                    {product.seller.name}
+                  </Typography>
+                </Link>
+              )}
             </div>
 
             {/* Price and rating */}

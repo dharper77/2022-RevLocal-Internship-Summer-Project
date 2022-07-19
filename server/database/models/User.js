@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   shipping: {
     address: {
-      street: String,
+      street1: String,
+      street2: String,
       city: String,
       state: String,
       zipCode: Number
@@ -17,7 +18,8 @@ const userSchema = new mongoose.Schema({
   },
   billing: {
     address: {
-      street: String,
+      street1: String,
+      street2: String,
       city: String,
       state: String,
       zipCode: Number
@@ -27,6 +29,7 @@ const userSchema = new mongoose.Schema({
     ccv: Number
   },
   selling: {
+    isShopSetUp: Boolean,
     listings: [String],
     routing: Number,
     storeRating: Number
