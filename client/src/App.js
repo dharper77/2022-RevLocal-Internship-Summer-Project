@@ -10,7 +10,10 @@ import ProfilePage from './pages/ProfilePage'
 import EditListingPage from './pages/EditListingPage'
 import { RegisterUserPage } from './pages/RegisterUserPage'
 import SellerPage from './pages/SellerPage'
-import StoreSetUpPage from './pages/StoreSetUpPage'
+import StoreSetUpPage1 from './pages/storeSetup/StoreSetUpPage1'
+import StoreSetUpPage2 from './pages/storeSetup/StoreSetUpPage2'
+import StoreSetUpPage3 from './pages/storeSetup/StoreSetUpPage3'
+import StoreSetUpPage4 from './pages/storeSetup/StoreSetUpPage4'
 
 const App = () => {
   return (
@@ -26,7 +29,10 @@ const App = () => {
           <Route path="/editListing/id/:id" element={<EditListingPage />} />
           <Route path="/registerUser" element={<RegisterUserPage />} />
           <Route path="/seller/:sellerId" element={<SellerPage />} />
-          <Route path="/setUpShop" element={<StoreSetUpPage />} />
+          <Route path="/setUpShop/1" element={<StoreSetUpPage1 />} />
+          <Route path="/setUpShop/2/:shopId" element={<StoreSetUpPage2 />} />
+          <Route path="/setUpShop/3/:shopId" element={<StoreSetUpPage3 />} />
+          <Route path="/setUpShop/4/:shopId" element={<StoreSetUpPage4 />} />
         </Routes>
       </Container>
     </Router>

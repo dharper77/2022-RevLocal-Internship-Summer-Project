@@ -31,7 +31,7 @@ export const CheckoutPage = ({
   const [streetAddress2, setStreetAddress2] = useState('')
   const [state, setState] = useState('')
   const [city, setCity] = useState('')
-  const [zipCode, setZipCode] = useState(0)
+  const [zipCode, setZipCode] = useState()
 
   const navigate = useNavigate()
 

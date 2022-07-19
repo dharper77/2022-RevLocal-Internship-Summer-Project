@@ -4,7 +4,8 @@ import {
   Button,
   Grid,
   Snackbar,
-  TextField
+  TextField,
+  Typography
 } from '@mui/material'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
@@ -65,90 +66,113 @@ const PostNewProduct = ({
   return (
     <>
       <Header />
-      <h1 style={{ paddingTop: '3rem', paddingLeft: '2rem', margin: '0px' }}>
-        Add a new product
-      </h1>
-      <Grid
-        container
-        justifyContent={'space-around'}
-        alignItems={'flex-start'}
-        display={'flex'}
-        flexDirection={'row'}
-      >
-        {/* Title and Description fields */}
-        <Grid item xs={5} className="new-product">
-          <h3>Title</h3>
-          <TextField
-            fullWidth
-            size="small"
-            onChange={event => dispatch(setTitle(event.target.value))}
-          />
-
-          <h3 style={{ marginTop: '3rem' }}>Description</h3>
-          <TextField
-            fullWidth
-            multiline
-            id="description"
-            onChange={event => dispatch(setDescription(event.target.value))}
-          />
-        </Grid>
-
-        {/* Image and Category fields */}
-        <Grid item xs={5} className="new-product">
-          <h3>Image URL</h3>
-          <TextField
-            fullWidth
-            size="small"
-            onChange={event => dispatch(setImage(event.target.value))}
-          />
-
+      <Grid container justifyContent={'center'} alignItems={'center'}>
+        <Grid
+          item
+          sx={{
+            width: '75%',
+            border: '1px solid black',
+            borderRadius: '10px',
+            padding: '0px',
+            paddingBottom: '1rem'
+          }}
+        >
+          <Typography
+            variant="h4"
+            className="typo"
+            sx={{ paddingLeft: '3.75rem', paddingTop: '2.5rem' }}
+          >
+            Post New Product
+          </Typography>
           <Grid
             container
-            justifyContent={'space-between'}
+            justifyContent={'space-around'}
             alignItems={'flex-start'}
-            display={'flex'}
             flexDirection={'row'}
-            sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+            sx={{ padding: '0px' }}
           >
-            <Grid
-              item
-              xs={5.5}
-              sx={{ paddingLeft: '0px', paddingRight: '0px' }}
-            >
-              <h3 style={{ marginTop: '3rem' }}>Category</h3>
-              <Autocomplete
-                sx={{ height: '4.5rem', padding: '0px' }}
-                freeSolo
-                forcePopupIcon
-                fullWidth
-                options={categories}
-                onInputChange={(event, input) => dispatch(setCategory(input))}
-                renderInput={params => <TextField {...params} label="" />}
-              />
-            </Grid>
-            <Grid
-              item
-              xs={5.5}
-              sx={{ paddingLeft: '0px', paddingRight: '0px' }}
-            >
-              <h3 style={{ marginTop: '3rem' }}>Price</h3>
+            {/* Title and Description fields */}
+            <Grid item xs={5} className="new-product">
+              <h3>Title</h3>
               <TextField
                 fullWidth
-                id="price"
                 size="small"
-                onChange={event => dispatch(setPrice(event.target.value))}
+                onChange={event => dispatch(setTitle(event.target.value))}
+              />
+
+              <h3 style={{ marginTop: '3rem' }}>Description</h3>
+              <TextField
+                fullWidth
+                multiline
+                id="description"
+                onChange={event => dispatch(setDescription(event.target.value))}
+                className="textfield"
               />
             </Grid>
-            <Grid item xs={12} sx={{ padding: '0px' }}>
-              <Button
-                variant="contained"
-                onClick={() => handleSubmit()}
+
+            {/* Image and Category fields */}
+            <Grid item xs={5} className="new-product">
+              <h3>Image URL</h3>
+              <TextField
                 fullWidth
-                id="submit"
-                sx={{ marginTop: '3rem' }}
+                size="small"
+                onChange={event => dispatch(setImage(event.target.value))}
+              />
+
+              <Grid
+                container
+                justifyContent={'space-between'}
+                alignItems={'flex-start'}
+                display={'flex'}
+                flexDirection={'row'}
+                sx={{ paddingLeft: '0px', paddingRight: '0px' }}
               >
-                Submit
-              </Button>
+                <Grid
+                  item
+                  xs={5.5}
+                  sx={{
+                    paddingLeft: '0px',
+                    paddingRight: '0px'
+                  }}
+                >
+                  <h3 style={{ marginTop: '1rem' }}>Category</h3>
+                  <Autocomplete
+                    sx={{ height: '4.5rem', padding: '0px' }}
+                    freeSolo
+                    forcePopupIcon
+                    fullWidth
+                    options={categories}
+                    onInputChange={(event, input) =>
+                      dispatch(setCategory(input))
+                    }
+                    renderInput={params => <TextField {...params} label="" />}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={5.5}
+                  sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+                >
+                  <h3 style={{ marginTop: '1rem' }}>Price</h3>
+                  <TextField
+                    fullWidth
+                    id="price"
+                    size="small"
+                    onChange={event => dispatch(setPrice(event.target.value))}
+                  />
+                </Grid>
+                <Grid item xs={12} sx={{ padding: '0px' }}>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleSubmit()}
+                    fullWidth
+                    id="submit"
+                    sx={{ marginTop: '3rem' }}
+                  >
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

@@ -13,6 +13,10 @@ h3 {
   font-family: 'Roboto Mono', monospace;
 }
 
+h4 {
+  font-family: 'Roboto Mono', monospace;
+}
+
 h3.product-title {
   text-overflow: ellipsis ellipsis;
   margin-top: 0px;

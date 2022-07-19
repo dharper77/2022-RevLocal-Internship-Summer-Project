@@ -92,7 +92,7 @@ const AccountMenu = isShopSetUp => {
             <MenuItem>Sell</MenuItem>
           </Link>
         ) : (
-          <Link to="/setUpShop">
+          <Link to="/setUpShop/1">
             <MenuItem>Set Up Shop</MenuItem>
           </Link>
         )}
@@ -108,7 +108,7 @@ const AccountMenu = isShopSetUp => {
           <Link to="/">
             Logout
             <ListItemIcon sx={{ padding: '0px' }}>
-              <Logout fontSize="small" sx={{ paddingLeft: '2rem' }} />
+              <Logout fontSize="small" sx={{ paddingLeft: '2.75rem' }} />
             </ListItemIcon>
           </Link>
         </MenuItem>

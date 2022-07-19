@@ -67,7 +67,9 @@ const ProductPage = () => {
             </div>
 
             {/* Description */}
-            <div>{product.description}</div>
+            <Typography paragraph sx={{ padding: '1rem' }}>
+              {product.description}
+            </Typography>
 
             {/* Add to cart and quantity selector */}
             <div>

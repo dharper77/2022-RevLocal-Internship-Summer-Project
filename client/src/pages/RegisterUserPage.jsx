@@ -13,15 +13,17 @@ export const RegisterUserPage = () => {
 
   const [password, setPassword] = useState(null)
   const [errorPassword, setErrorPassword] = useState(false)
-  const [passwordHelperText, setPasswordHelperText] = useState('')
+  const [passwordHelperText, setPasswordHelperText] = useState(' ')
 
   const [confirmPassword, setConfirmPassword] = useState(null)
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false)
-  const [confirmPasswordHelperText, setConfirmPasswordHelperText] = useState('')
+  const [confirmPasswordHelperText, setConfirmPasswordHelperText] = useState(
+    ' '
+  )
 
   const [email, setEmail] = useState(null)
   const [errorEmail, setErrorEmail] = useState(false)
-  const [emailHelperText, setEmailHelperText] = useState('')
+  const [emailHelperText, setEmailHelperText] = useState(' ')
 
   const [firstName, setFirstName] = useState(null)
   const [errorFirstName, setErrorFirstName] = useState(false)
@@ -150,6 +152,7 @@ export const RegisterUserPage = () => {
               className="textfield"
               label="First Name"
               fullWidth
+              helperText=" "
             />
           </Grid>
           <Grid item xs={6}>
@@ -164,6 +167,7 @@ export const RegisterUserPage = () => {
               className="textfield"
               label="Last Name"
               fullWidth
+              helperText=" "
             />
           </Grid>
           <Grid item xs={12}>
@@ -192,6 +196,7 @@ export const RegisterUserPage = () => {
               className="textfield"
               label="Username"
               fullWidth
+              helperText=" "
             />
           </Grid>
           <Grid item xs={6}>
