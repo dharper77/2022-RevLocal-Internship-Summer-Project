@@ -128,7 +128,7 @@ export const RegisterUserPage = () => {
       <Grid
         item
         xs={5}
-        sx={{ border: '1px solid black', borderRadius: '10px' }}
+        sx={{ border: '0.0625rem solid black', borderRadius: '0.625rem' }}
       >
         <Grid
           container
@@ -200,8 +200,8 @@ export const RegisterUserPage = () => {
             />
           </Grid>
           <Grid item xs={6}>
-            <Grid container sx={{ padding: '0px' }}>
-              <Grid item xs={12} sx={{ padding: '0px' }}>
+            <Grid container sx={{ padding: '0rem' }}>
+              <Grid item xs={12} sx={{ padding: '0rem' }}>
                 <TextField
                   onChange={event => {
                     setPassword(event.target.value)
@@ -219,7 +219,7 @@ export const RegisterUserPage = () => {
                   fullWidth
                 />
               </Grid>
-              <Grid item xs={12} sx={{ padding: '0px', paddingTop: '2rem' }}>
+              <Grid item xs={12} sx={{ padding: '0rem', paddingTop: '2rem' }}>
                 <TextField
                   onChange={event => {
                     setConfirmPassword(event.target.value)
@@ -241,7 +241,7 @@ export const RegisterUserPage = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container sx={{ padding: '0px' }} justifyContent="center">
+          <Grid container sx={{ padding: '0rem' }} justifyContent="center">
             <Grid item xs={6}>
               <Link to="/login">
                 <Button

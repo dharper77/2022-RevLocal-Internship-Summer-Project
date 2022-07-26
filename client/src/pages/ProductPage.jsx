@@ -30,7 +30,7 @@ const ProductPage = () => {
       <Header />
       {!isLoading && (
         <Grid container sx={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Grid item xs={4} sx={{ padding: '50px', marginTop: '20px' }}>
+          <Grid item xs={4} sx={{ padding: '3.125rem', marginTop: '1.25rem' }}>
             <img
               className="product-page-image"
               src={product.image}
@@ -44,7 +44,7 @@ const ProductPage = () => {
               {product && product.seller && (
                 <Link to={`/seller/${product.seller.id}`}>
                   <Typography
-                    sx={{ marginTop: '1rem', marginBottom: '0px' }}
+                    sx={{ marginTop: '1rem', marginBottom: '0rem' }}
                     paragraph
                   >
                     {product.seller.name}

@@ -42,10 +42,12 @@ const StoreSetUpPage1 = seller => {
 
       <Grid container alignItems="center" direction="column">
         <Grid item xs={12}>
-          <h1 style={{ paddingLeft: '0px', marginBottom: '0px' }}>Welcome!</h1>
+          <h1 style={{ paddingLeft: '0rem', marginBottom: '0rem' }}>
+            Welcome!
+          </h1>
         </Grid>
         <Grid item xs={12}>
-          <Typography paragraph sx={{ marginLeft: '0px' }}>
+          <Typography paragraph sx={{ marginLeft: '0rem' }}>
             Before you can start selling, you must first set up your shop. Don't
             worry, this won't take long!
           </Typography>

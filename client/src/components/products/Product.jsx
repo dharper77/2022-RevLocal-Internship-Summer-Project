@@ -12,9 +12,9 @@ const Product = ({ id, title, image, price, editable }) => {
         container
         className="product-listing"
         sx={{
-          maxHeight: '400px',
+          maxHeight: '25rem',
           width: '100%',
-          margin: '0px'
+          margin: '0rem'
         }}
       >
         <img className="product-listing-image" src={image} alt={title} />
@@ -26,9 +26,9 @@ const Product = ({ id, title, image, price, editable }) => {
         <Grid
           container
           justifyContent="space-between"
-          sx={{ paddingTop: '0px', paddingRight: '0px' }}
+          sx={{ paddingTop: '0rem', paddingRight: '0rem' }}
         >
-          <Grid item sx={{ padding: '0px' }}>
+          <Grid item sx={{ padding: '0rem' }}>
             <h3 className="price">${price.toFixed(2)}</h3>
           </Grid>
           {editable && (

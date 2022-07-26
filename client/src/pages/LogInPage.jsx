@@ -57,7 +57,7 @@ const LogInPage = () => {
       <Grid
         item
         xs={5}
-        sx={{ border: '1px solid black', borderRadius: '10px' }}
+        sx={{ border: '0.0625rem solid black', borderRadius: '0.625rem' }}
       >
         <Grid
           container

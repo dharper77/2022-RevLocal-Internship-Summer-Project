@@ -1,10 +1,10 @@
 .loginPage-input {
   font-family: 'Roboto Mono', monospace;
-  padding: 0px;
+  padding: 0rem;
   width: 10rem;
 }
 .loginPage-Button {
-  width: 100px;
+  width: 6.25rem;
 }
 .back-button {
   float: left;

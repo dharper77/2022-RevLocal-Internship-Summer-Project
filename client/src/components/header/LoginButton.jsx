@@ -7,10 +7,10 @@ const LoginButton = () => {
     <Grid
       container
       sx={{
-        padding: '0px'
+        padding: '0rem'
       }}
     >
-      <Grid item className="logInButton" sx={{ padding: '26px' }}>
+      <Grid item className="logInButton" sx={{ padding: '1.625rem' }}>
         <Link to="/login">
           <h3>Log In / Sign Up</h3>
         </Link>

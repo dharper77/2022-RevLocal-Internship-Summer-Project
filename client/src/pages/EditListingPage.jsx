@@ -60,7 +60,7 @@ const EditListing = () => {
     product && (
       <>
         <Header />
-        <h1 style={{ paddingTop: '3rem', paddingLeft: '2rem', margin: '0px' }}>
+        <h1 style={{ paddingTop: '3rem', paddingLeft: '2rem', margin: '0rem' }}>
           Edit Listing
         </h1>
         <Grid
@@ -108,16 +108,16 @@ const EditListing = () => {
               alignItems={'flex-start'}
               display={'flex'}
               flexDirection={'row'}
-              sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+              sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
             >
               <Grid
                 item
                 xs={5.5}
-                sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+                sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
               >
                 <h3 style={{ marginTop: '3rem' }}>Category</h3>
                 <Autocomplete
-                  sx={{ height: '4.5rem', padding: '0px' }}
+                  sx={{ height: '4.5rem', padding: '0rem' }}
                   defaultValue={product.category}
                   freeSolo
                   forcePopupIcon
@@ -132,7 +132,7 @@ const EditListing = () => {
               <Grid
                 item
                 xs={5.5}
-                sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+                sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
               >
                 <h3 style={{ marginTop: '3rem' }}>Price</h3>
                 <TextField
@@ -143,10 +143,10 @@ const EditListing = () => {
                   onChange={event => (updatedFields.price = event.target.value)}
                 />
               </Grid>
-              <Grid item xs={5.5} sx={{ padding: '0px' }}>
+              <Grid item xs={5.5} sx={{ padding: '0rem' }}>
                 <ConfirmDelete handleDelete={handleDelete} />
               </Grid>
-              <Grid item xs={5.5} sx={{ padding: '0px' }}>
+              <Grid item xs={5.5} sx={{ padding: '0rem' }}>
                 <Button
                   variant="contained"
                   onClick={() => handleUpdate()}

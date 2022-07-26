@@ -14,12 +14,12 @@ export const ShoppingCart = ({ cart, totalItemsInCart }) => {
     <Grid
       container
       sx={{
-        padding: '0px',
+        padding: '0rem',
         justifyContent: 'right',
         alignItems: 'center'
       }}
     >
-      <Grid item className="shopping-cart" sx={{ paddingRight: '30px' }}>
+      <Grid item className="shopping-cart" sx={{ paddingRight: '1.875rem' }}>
         <IconButton onClick={() => setOpen(true)}>
           <Badge badgeContent={totalItemsInCart} color="error">
             <ShoppingCartIcon sx={{ width: '2.5rem', height: '2.5rem' }} />

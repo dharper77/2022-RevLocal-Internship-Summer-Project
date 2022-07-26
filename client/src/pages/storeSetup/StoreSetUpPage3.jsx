@@ -47,13 +47,13 @@ const StoreSetUpPage3 = () => {
           alignItems="flex-start"
           sx={{
             padding: '2rem',
-            paddingTop: '0px',
-            border: '1px solid black',
-            borderRadius: '10px'
+            paddingTop: '0rem',
+            border: '0.0625rem solid black',
+            borderRadius: '0.625rem'
           }}
           xs={6}
         >
-          <Grid container item justifyContent="center" sx={{ padding: '0px' }}>
+          <Grid container item justifyContent="center" sx={{ padding: '0rem' }}>
             <Grid item xs={12}>
               <h2 style={{ marginTop: '2rem' }}>Personalize Shop</h2>
             </Grid>
@@ -62,7 +62,7 @@ const StoreSetUpPage3 = () => {
               <Divider style={{ width: '100%' }} />
             </Grid>
           </Grid>
-          <Grid item sx={{ padding: '0px' }}>
+          <Grid item sx={{ padding: '0rem' }}>
             <h3 style={{ marginTop: '2rem' }}>Logo URL:</h3>
           </Grid>
           <TextField
@@ -70,7 +70,7 @@ const StoreSetUpPage3 = () => {
             className="setUpFields"
             onChange={event => setLogoURL(event.target.value)}
           />
-          <Grid item sx={{ padding: '0px' }}>
+          <Grid item sx={{ padding: '0rem' }}>
             <h3 style={{ marginTop: '2rem' }}>Banner URL:</h3>
           </Grid>
           <TextField
@@ -78,7 +78,7 @@ const StoreSetUpPage3 = () => {
             className="setUpFields"
             onChange={event => setBannerURL(event.target.value)}
           />
-          <Grid item sx={{ padding: '0px' }}>
+          <Grid item sx={{ padding: '0rem' }}>
             <h3 style={{ marginTop: '2rem' }}>Description:</h3>
           </Grid>
           <TextField
@@ -97,17 +97,17 @@ const StoreSetUpPage3 = () => {
           alignItems="center"
           sx={{
             padding: '2rem',
-            paddingTop: '0px',
-            border: '1px solid black',
-            borderRadius: '10px'
+            paddingTop: '0rem',
+            border: '0.0625rem solid black',
+            borderRadius: '0.625rem'
           }}
           xs={4}
         >
-          <Grid item sx={{ padding: '0px' }}>
+          <Grid item sx={{ padding: '0rem' }}>
             <h3 style={{ marginTop: '2rem' }}>Where are you shipping from?</h3>
             <Divider style={{ width: '100%' }} />
           </Grid>
-          <Grid item sx={{ padding: '0px' }}>
+          <Grid item sx={{ padding: '0rem' }}>
             <h3 style={{ marginTop: '2rem' }}>State:</h3>
           </Grid>
           <TextField
@@ -115,7 +115,7 @@ const StoreSetUpPage3 = () => {
             className="setUpFields"
             onChange={event => setState(event.target.value)}
           />
-          <Grid item sx={{ padding: '0px' }}>
+          <Grid item sx={{ padding: '0rem' }}>
             <h3 style={{ marginTop: '2rem' }}>City:</h3>
           </Grid>
           <TextField

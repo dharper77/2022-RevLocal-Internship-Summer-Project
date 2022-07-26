@@ -40,7 +40,7 @@ const AccountMenu = isShopSetUp => {
             sx={{
               width: '2.5rem',
               height: '2.5rem',
-              padding: '0px'
+              padding: '0rem'
             }}
             src={Img}
           />
@@ -58,7 +58,7 @@ const AccountMenu = isShopSetUp => {
           elevation: 0,
           sx: {
             overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            filter: 'drop-shadow(0rem 0.125rem 0.5rem rgba(0,0,0,0.32))',
             mt: 1.5,
             '& .MuiAvatar-root': {
               width: 32,
@@ -100,14 +100,14 @@ const AccountMenu = isShopSetUp => {
         <Divider sx={{ marginTop: '0.75rem', marginBottom: '0.75rem' }} />
         <MenuItem>
           Settings
-          <ListItemIcon sx={{ padding: '0px' }}>
+          <ListItemIcon sx={{ padding: '0rem' }}>
             <Settings fontSize="small" sx={{ paddingLeft: '1.4rem' }} />
           </ListItemIcon>
         </MenuItem>
         <MenuItem onClick={() => dispatch(logOut())}>
           <Link to="/">
             Logout
-            <ListItemIcon sx={{ padding: '0px' }}>
+            <ListItemIcon sx={{ padding: '0rem' }}>
               <Logout fontSize="small" sx={{ paddingLeft: '2.75rem' }} />
             </ListItemIcon>
           </Link>

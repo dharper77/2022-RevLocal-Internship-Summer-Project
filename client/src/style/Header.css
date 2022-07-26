@@ -1,14 +1,14 @@
 .MuiDrawer-root {
-  padding: 0px;
+  padding: 0rem;
 }
 
 .cart-title {
-  margin: 0px;
+  margin: 0rem;
   margin-bottom: 0.5rem;
 }
 
 .cart-price {
-  margin: 0px;
+  margin: 0rem;
   color: green;
   font-weight: 700;
 }
@@ -19,9 +19,9 @@
 }
 
 img {
-  max-height: 150px;
+  max-height: 9.375rem;
   object-fit: scale-down;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   width: 100%;
   height: auto;
 }

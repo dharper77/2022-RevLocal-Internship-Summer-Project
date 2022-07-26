@@ -27,7 +27,7 @@ const ConfirmDelete = ({ handleDelete }) => {
       </Button>
 
       <Dialog
-        sx={{ height: '300px' }}
+        sx={{ height: '18.75rem' }}
         open={open}
         onClose={() => setOpen(false)}
       >

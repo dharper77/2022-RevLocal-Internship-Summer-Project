@@ -56,16 +56,16 @@ const StoreSetUpPage2 = () => {
     <>
       <Header />
 
-      <Grid container justifyContent="center" sx={{ padding: '0px' }}>
+      <Grid container justifyContent="center" sx={{ padding: '0rem' }}>
         <Box width="100%" />
-        <Grid item xs="auto" sx={{ padding: '0px' }}>
-          <h1 style={{ margin: '0px', padding: '0px' }}>Name your shop:</h1>
+        <Grid item xs="auto" sx={{ padding: '0rem' }}>
+          <h1 style={{ margin: '0rem', padding: '0rem' }}>Name your shop:</h1>
         </Grid>
         <Box width="100%" />
         <Grid
           container
           justifyContent="center"
-          sx={{ padding: '0px', height: '5rem' }}
+          sx={{ padding: '0rem', height: '5rem' }}
         >
           <Grid item xs={3}>
             <TextField

@@ -60,12 +60,12 @@ const ProductInCart = ({ id, price, quantity }) => {
                 height: '5rem',
                 justifyContent: 'center',
                 alignItems: 'center',
-                paddingBottom: '0px'
+                paddingBottom: '0rem'
               }}
             >
-              <Grid item xs={2} sx={{ padding: '0px', maxHeight: '2rem' }}>
+              <Grid item xs={2} sx={{ padding: '0rem', maxHeight: '2rem' }}>
                 <Button
-                  sx={{ padding: '0px', minWidth: '100%' }}
+                  sx={{ padding: '0rem', minWidth: '100%' }}
                   variant="contained"
                   onClick={() => {
                     removeButtonOnClick()
@@ -75,22 +75,22 @@ const ProductInCart = ({ id, price, quantity }) => {
                 </Button>
               </Grid>
 
-              <Grid item xs={3} sx={{ padding: '0px', maxHeight: '2rem' }}>
+              <Grid item xs={3} sx={{ padding: '0rem', maxHeight: '2rem' }}>
                 <Grid
                   container
                   sx={{
-                    padding: '0px',
+                    padding: '0rem',
                     justifyContent: 'center'
                   }}
                 >
-                  <Grid item sx={{ padding: '0px' }}>
+                  <Grid item sx={{ padding: '0rem' }}>
                     <p className="cart-quantity">{quantity}</p>
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={2} sx={{ padding: '0px', maxHeight: '2rem' }}>
+              <Grid item xs={2} sx={{ padding: '0rem', maxHeight: '2rem' }}>
                 <Button
-                  sx={{ padding: '0px', minWidth: '100%' }}
+                  sx={{ padding: '0rem', minWidth: '100%' }}
                   variant="contained"
                   onClick={() => {
                     dispatch(incrementQuantity({ product: id, price: price }))
@@ -103,11 +103,11 @@ const ProductInCart = ({ id, price, quantity }) => {
               <Grid
                 item
                 xs={3}
-                sx={{ padding: '0px', maxHeight: '2rem', height: '2rem' }}
+                sx={{ padding: '0rem', maxHeight: '2rem', height: '2rem' }}
               >
                 <Button
                   sx={{
-                    padding: '0px',
+                    padding: '0rem',
                     minHeight: '2rem'
                   }}
                   onClick={() => {

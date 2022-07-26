@@ -26,24 +26,24 @@ const SearchBar = searchBarInput => {
       container
       direction="row"
       sx={{
-        padding: '10px',
+        padding: '0.625rem',
         justifyContent: 'center',
         alignItems: 'center'
       }}
     >
       {/* search bar input field */}
       {/* className="searchbar" */}
-      <Grid item xs={8} sx={{ paddingRight: '0px' }}>
+      <Grid item xs={8} sx={{ paddingRight: '0rem' }}>
         <TextField
           sx={{
             background: '#FFFFFF',
             height: '2.5rem',
             justifyContent: 'center',
-            border: '1px solid rgba(0, 0, 0, 0.2)',
-            borderRadius: '10px 0px 0px 10px',
-            padding: '0px',
+            border: '0.0625rem solid rgba(0, 0, 0, 0.2)',
+            borderRadius: '0.625rem 0rem 0rem 0.625rem',
+            padding: '0rem',
             width: '100%',
-            boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.125)'
+            boxShadow: '0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.125)'
           }}
           type="text"
           placeholder="Search..."
@@ -66,7 +66,7 @@ const SearchBar = searchBarInput => {
       {/* search bar magnifying-glass button */}
       <Grid item className="search-button">
         <IconButton
-          sx={{ padding: '7px' }}
+          sx={{ padding: '0.4375rem' }}
           onClick={() => {
             dispatch(setSearchBarInput({ input: input }))
             navigate('/')

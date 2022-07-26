@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto+Mono&display=swap');
 
 h1 {
-  padding-left: 30px;
+  padding-left: 1.875rem;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -19,12 +19,12 @@ h4 {
 
 h3.product-title {
   text-overflow: ellipsis ellipsis;
-  margin-top: 0px;
+  margin-top: 0rem;
 }
 
 h3.price {
   color: green;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 a,

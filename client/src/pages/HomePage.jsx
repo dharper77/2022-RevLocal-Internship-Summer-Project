@@ -18,12 +18,12 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <Grid container sx={{ padding: '0px' }}>
+      <Grid container sx={{ padding: '0rem' }}>
         <Grid item xs={2.5}>
           <Grid
             container
             className="sidebar-grid"
-            sx={{ paddingLeft: '0px', paddingRight: '0px' }}
+            sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
           >
             <Sidebar />
           </Grid>
@@ -35,7 +35,7 @@ const HomePage = () => {
             rowSpacing={2}
             className="products"
             justifyContent="flex-start"
-            sx={{ paddingTop: '25px', width: '100%' }}
+            sx={{ paddingTop: '1.5625rem', width: '100%' }}
           >
             <Products />
           </Grid>

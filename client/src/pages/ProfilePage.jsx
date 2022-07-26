@@ -28,7 +28,7 @@ export const ProfilePage = ({ seller }) => {
 
         {!isLoading && (
           <Grid container alignItems="center" justifyContent="flex-start">
-            <Grid item xs={1} sx={{ margin: '0px' }}>
+            <Grid item xs={1} sx={{ margin: '0rem' }}>
               {myProducts.totalPages > 1 && currentPage > 1 && (
                 <Button
                   onClick={() => {

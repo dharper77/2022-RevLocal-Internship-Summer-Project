@@ -2,11 +2,11 @@
   width: 100%;
   padding: 1.531rem 1.25rem;
   box-sizing: border-box;
-  height: 200px;
+  height: 12.5rem;
 }
 
 .MuiAutocomplete-endAdornment {
-  padding: 0px;
+  padding: 0rem;
 }
 
 .MuiAutocomplete-popper {
@@ -14,15 +14,15 @@
 }
 
 #submit {
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0.3125rem 0.625rem rgba(0, 0, 0, 0.15);
 }
 
 #submit:hover {
   transform: scale(1.05);
-  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0rem 0.4375rem 0.625rem rgba(0, 0, 0, 0.2);
 }
 
 .cart-quantity {
-  margin: 0px;
+  margin: 0rem;
   margin-top: 0.15rem;
 }

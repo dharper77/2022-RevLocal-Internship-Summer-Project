@@ -97,14 +97,14 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
       ) : searchBarInput && products.length === 0 ? (
         <>
           <h1
-            style={{ padding: '0px' }}
+            style={{ padding: '0rem' }}
           >{`Sorry, we couldn't find any results for '${searchBarInput}'...`}</h1>
           <h3>Please try searching for something else instead</h3>
         </>
       ) : (
         <>
           {products.map(({ _id, title, image, price }) => (
-            <Grid item xs={4} sx={{ paddingTop: '0px' }} key={_id}>
+            <Grid item xs={4} sx={{ paddingTop: '0rem' }} key={_id}>
               <Link
                 to={`/products/id/${_id}`}
                 onClick={() => {
