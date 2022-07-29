@@ -57,15 +57,20 @@ const LogInPage = () => {
       <Grid
         item
         xs={5}
-        sx={{ border: '0.0625rem solid black', borderRadius: '0.625rem' }}
+        sx={{
+          border: '0.0625rem solid black',
+          borderRadius: '0.625rem',
+          padding: '1rem'
+        }}
       >
         <Grid
           container
           direction="row"
           alignItems="flex-start"
           justifyContent="center"
+          sx={{ padding: '1rem' }}
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ padding: '1rem' }}>
             <Typography variant="h4" sx={{ paddingBottom: '0.5rem' }}>
               Log In
             </Typography>
@@ -76,7 +81,7 @@ const LogInPage = () => {
             </Link>
             <Divider sx={{ paddingTop: '1rem' }} />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ padding: '1rem' }}>
             <TextField
               onChange={event => setUsername(event.target.value)}
               onClick={() => handleClickAfterError()}
@@ -89,7 +94,7 @@ const LogInPage = () => {
               fullWidth
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ padding: '1rem' }}>
             <TextField
               onChange={event => setPassword(event.target.value)}
               onClick={() => handleClickAfterError()}
@@ -104,7 +109,7 @@ const LogInPage = () => {
               fullWidth
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} sx={{ padding: '1rem' }}>
             <Button
               disabled={isLoginButtonDisabled}
               className="loginPage-Button"

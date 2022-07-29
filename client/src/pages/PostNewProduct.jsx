@@ -73,7 +73,6 @@ const PostNewProduct = ({
             width: '75%',
             border: '0.0625rem solid black',
             borderRadius: '0.625rem',
-            padding: '0rem',
             paddingBottom: '1rem'
           }}
         >
@@ -89,7 +88,6 @@ const PostNewProduct = ({
             justifyContent={'space-around'}
             alignItems={'flex-start'}
             flexDirection={'row'}
-            sx={{ padding: '0rem' }}
           >
             {/* Title and Description fields */}
             <Grid item xs={5} className="new-product">
@@ -125,14 +123,14 @@ const PostNewProduct = ({
                 alignItems={'flex-start'}
                 display={'flex'}
                 flexDirection={'row'}
-                sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
+                sx={{ paddingTop: '1rem', paddingBottom: '1rem' }}
               >
                 <Grid
                   item
                   xs={5.5}
                   sx={{
-                    paddingLeft: '0rem',
-                    paddingRight: '0rem'
+                    paddingTop: '1rem',
+                    paddingBottom: '1rem'
                   }}
                 >
                   <h3 style={{ marginTop: '1rem' }}>Category</h3>
@@ -151,7 +149,7 @@ const PostNewProduct = ({
                 <Grid
                   item
                   xs={5.5}
-                  sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
+                  sx={{ paddingTop: '1rem', paddingBottom: '1rem' }}
                 >
                   <h3 style={{ marginTop: '1rem' }}>Price</h3>
                   <TextField
@@ -161,7 +159,7 @@ const PostNewProduct = ({
                     onChange={event => dispatch(setPrice(event.target.value))}
                   />
                 </Grid>
-                <Grid item xs={12} sx={{ padding: '0rem' }}>
+                <Grid item xs={12}>
                   <Button
                     variant="contained"
                     onClick={() => handleSubmit()}

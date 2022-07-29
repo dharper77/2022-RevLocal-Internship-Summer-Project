@@ -10,6 +10,7 @@ import StepLabel from '@mui/material/StepLabel'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import '../../style/SetUpStore.css'
+import { useEffect } from 'react'
 
 const StoreSetUpPage3 = () => {
   const [description, setDescription] = useState('')
@@ -17,6 +18,7 @@ const StoreSetUpPage3 = () => {
   const [bannerURL, setBannerURL] = useState('')
   const [state, setState] = useState('')
   const [city, setCity] = useState('')
+  const [buttonIsDisabled, setButtonIsDisabled] = useState(true)
   const { shopId } = useParams()
 
   const submitChange = async () => {
@@ -35,10 +37,17 @@ const StoreSetUpPage3 = () => {
     }
   }
 
+  useEffect(() => {
+    if (description && logoURL && bannerURL && state && city) {
+      setButtonIsDisabled(false)
+    } else {
+      setButtonIsDisabled(true)
+    }
+  }, [description, logoURL, bannerURL, state, city])
+
   return (
     <>
       <Header />
-
       <Grid container justifyContent="space-evenly" sx={{ paddingTop: '3rem' }}>
         <Grid
           container
@@ -53,24 +62,33 @@ const StoreSetUpPage3 = () => {
           }}
           xs={6}
         >
-          <Grid container item justifyContent="center" sx={{ padding: '0rem' }}>
-            <Grid item xs={12}>
-              <h2 style={{ marginTop: '2rem' }}>Personalize Shop</h2>
+          <Grid container justifyContent="center">
+            <Grid
+              container
+              item
+              justifyContent="center"
+              xs={12}
+              sx={{
+                paddingTop: '1rem',
+                paddingLeft: '1rem',
+                paddingRight: '1rem'
+              }}
+            >
+              <h2>Personalize Shop</h2>
             </Grid>
-            <Grid item xs={6}>
-              {/* TODO - fix this  */}
+            <Grid item xs={5}>
               <Divider style={{ width: '100%' }} />
             </Grid>
           </Grid>
-          <Grid item sx={{ padding: '0rem' }}>
-            <h3 style={{ marginTop: '2rem' }}>Logo URL:</h3>
+          <Grid item>
+            <h3 style={{ marginTop: '1rem' }}>Logo URL:</h3>
           </Grid>
           <TextField
             fullWidth
             className="setUpFields"
             onChange={event => setLogoURL(event.target.value)}
           />
-          <Grid item sx={{ padding: '0rem' }}>
+          <Grid item>
             <h3 style={{ marginTop: '2rem' }}>Banner URL:</h3>
           </Grid>
           <TextField
@@ -78,7 +96,7 @@ const StoreSetUpPage3 = () => {
             className="setUpFields"
             onChange={event => setBannerURL(event.target.value)}
           />
-          <Grid item sx={{ padding: '0rem' }}>
+          <Grid item>
             <h3 style={{ marginTop: '2rem' }}>Description:</h3>
           </Grid>
           <TextField
@@ -103,11 +121,11 @@ const StoreSetUpPage3 = () => {
           }}
           xs={4}
         >
-          <Grid item sx={{ padding: '0rem' }}>
+          <Grid item>
             <h3 style={{ marginTop: '2rem' }}>Where are you shipping from?</h3>
             <Divider style={{ width: '100%' }} />
           </Grid>
-          <Grid item sx={{ padding: '0rem' }}>
+          <Grid item>
             <h3 style={{ marginTop: '2rem' }}>State:</h3>
           </Grid>
           <TextField
@@ -115,7 +133,7 @@ const StoreSetUpPage3 = () => {
             className="setUpFields"
             onChange={event => setState(event.target.value)}
           />
-          <Grid item sx={{ padding: '0rem' }}>
+          <Grid item>
             <h3 style={{ marginTop: '2rem' }}>City:</h3>
           </Grid>
           <TextField
@@ -154,6 +172,7 @@ const StoreSetUpPage3 = () => {
               <Button
                 variant="contained"
                 endIcon={<ArrowForwardIcon />}
+                disabled={buttonIsDisabled}
                 sx={{ marginBottom: '2rem' }}
                 onClick={() => submitChange()}
               >

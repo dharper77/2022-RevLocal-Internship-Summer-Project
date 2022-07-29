@@ -18,7 +18,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <Grid container sx={{ padding: '0rem' }}>
+      <Grid container>
         <Grid item xs={2.5}>
           <Grid
             container

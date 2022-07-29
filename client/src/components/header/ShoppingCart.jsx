@@ -14,7 +14,6 @@ export const ShoppingCart = ({ cart, totalItemsInCart }) => {
     <Grid
       container
       sx={{
-        padding: '0rem',
         justifyContent: 'right',
         alignItems: 'center'
       }}

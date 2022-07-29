@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const TotalInCart = ({ subtotal }) => {
   return (
     <>
-      <h3>{`Subtotal: $${Math.abs(subtotal.toFixed(2))}`}</h3>
+      <h3>{`Subtotal: $${Math.abs(subtotal).toFixed(2)}`}</h3>
       <Link to="/checkout">
         <Button variant="contained" sx={{ width: '100%' }}>
           Checkout

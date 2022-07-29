@@ -69,6 +69,7 @@ const EditListing = () => {
           alignItems={'flex-start'}
           display={'flex'}
           flexDirection={'row'}
+          sx={{ padding: '1rem' }}
         >
           {/* Title and Description fields */}
           <Grid item xs={5} className="new-product">
@@ -108,7 +109,11 @@ const EditListing = () => {
               alignItems={'flex-start'}
               display={'flex'}
               flexDirection={'row'}
-              sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
+              sx={{
+                padding: '1rem',
+                paddingLeft: '0rem',
+                paddingRight: '0rem'
+              }}
             >
               <Grid
                 item
@@ -132,7 +137,11 @@ const EditListing = () => {
               <Grid
                 item
                 xs={5.5}
-                sx={{ paddingLeft: '0rem', paddingRight: '0rem' }}
+                sx={{
+                  padding: '1rem',
+                  paddingLeft: '0rem',
+                  paddingRight: '0rem'
+                }}
               >
                 <h3 style={{ marginTop: '3rem' }}>Price</h3>
                 <TextField
@@ -143,10 +152,10 @@ const EditListing = () => {
                   onChange={event => (updatedFields.price = event.target.value)}
                 />
               </Grid>
-              <Grid item xs={5.5} sx={{ padding: '0rem' }}>
+              <Grid item xs={5.5}>
                 <ConfirmDelete handleDelete={handleDelete} />
               </Grid>
-              <Grid item xs={5.5} sx={{ padding: '0rem' }}>
+              <Grid item xs={5.5}>
                 <Button
                   variant="contained"
                   onClick={() => handleUpdate()}

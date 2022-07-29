@@ -96,15 +96,20 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
         <h1>Loading...</h1>
       ) : searchBarInput && products.length === 0 ? (
         <>
-          <h1
-            style={{ padding: '0rem' }}
-          >{`Sorry, we couldn't find any results for '${searchBarInput}'...`}</h1>
+          <h1 style={{ padding: '0rem' }}>
+            {`Sorry, we couldn't find any results for '${searchBarInput}'...`}
+          </h1>
           <h3>Please try searching for something else instead</h3>
         </>
       ) : (
         <>
           {products.map(({ _id, title, image, price }) => (
-            <Grid item xs={4} sx={{ paddingTop: '0rem' }} key={_id}>
+            <Grid
+              item
+              xs={4}
+              sx={{ padding: '1rem', paddingTop: '0rem' }}
+              key={_id}
+            >
               <Link
                 to={`/products/id/${_id}`}
                 onClick={() => {
@@ -113,6 +118,7 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
                 }}
               >
                 <Product
+                  isLoading={isLoading}
                   id={_id}
                   title={title}
                   image={image}
@@ -123,7 +129,7 @@ const Products = ({ selectedCategories, totalPages, searchBarInput }) => {
             </Grid>
           ))}
           {totalPages > 1 && (
-            <Grid container justifyContent="center">
+            <Grid container justifyContent="center" sx={{ padding: '1rem' }}>
               <Grid item>
                 <Pagination
                   count={totalPages}
