@@ -15,22 +15,22 @@ const Header = props => {
       sx={{ alignItems: 'center', justifyContent: 'space-around' }}
     >
       {/* logo */}
-      <Grid item xs={2.5} sx={{ padding: '0rem' }}>
+      <Grid item xs={2.5}>
         <Logo />
       </Grid>
 
       {/* search bar */}
-      <Grid item xs={4} sx={{ padding: '0rem' }}>
+      <Grid item xs={4}>
         <SearchBar />
       </Grid>
 
       {/* log in button or my account */}
-      <Grid item xs={2} sx={{ padding: '0rem', justifyContent: 'center' }}>
+      <Grid container item justifyContent="center" xs={2}>
         {props.isLoggedIn ? <AccountMenu /> : <LoginButton />}
       </Grid>
 
       {/* shopping cart */}
-      <Grid item xs={1} sx={{ padding: '0rem' }}>
+      <Grid item xs={1}>
         <ShoppingCart />
       </Grid>
     </Grid>

@@ -128,19 +128,24 @@ export const RegisterUserPage = () => {
       <Grid
         item
         xs={5}
-        sx={{ border: '0.0625rem solid black', borderRadius: '0.625rem' }}
+        sx={{
+          border: '0.0625rem solid black',
+          borderRadius: '0.625rem',
+          padding: '1rem'
+        }}
       >
         <Grid
           container
           direction="row"
           alignItems="flex-start"
           justifyContent="space-between"
+          sx={{ padding: '1rem' }}
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ padding: '1rem' }}>
             <Typography variant="h4">Sign Up</Typography>
             <Divider sx={{ paddingTop: '2rem' }} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} sx={{ padding: '1rem' }}>
             <TextField
               onChange={event => setFirstName(event.target.value)}
               onBlur={() =>
@@ -155,7 +160,7 @@ export const RegisterUserPage = () => {
               helperText=" "
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} sx={{ padding: '1rem' }}>
             <TextField
               onChange={event => setLastName(event.target.value)}
               onBlur={() =>
@@ -170,7 +175,7 @@ export const RegisterUserPage = () => {
               helperText=" "
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ padding: '1rem' }}>
             <TextField
               onBlur={event => {
                 handleEmailValidation(event.target.value)
@@ -184,7 +189,7 @@ export const RegisterUserPage = () => {
               helperText={emailHelperText}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} sx={{ padding: '1rem' }}>
             <TextField
               onChange={event => setUsername(event.target.value)}
               onBlur={() =>
@@ -199,9 +204,9 @@ export const RegisterUserPage = () => {
               helperText=" "
             />
           </Grid>
-          <Grid item xs={6}>
-            <Grid container sx={{ padding: '0rem' }}>
-              <Grid item xs={12} sx={{ padding: '0rem' }}>
+          <Grid item xs={6} sx={{ padding: '1rem' }}>
+            <Grid container>
+              <Grid item xs={12}>
                 <TextField
                   onChange={event => {
                     setPassword(event.target.value)
@@ -241,7 +246,7 @@ export const RegisterUserPage = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container sx={{ padding: '0rem' }} justifyContent="center">
+          <Grid container justifyContent="center">
             <Grid item xs={6}>
               <Link to="/login">
                 <Button

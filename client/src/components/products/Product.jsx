@@ -5,42 +5,56 @@ import '../../style/products.css'
 import '../../style/typography.css'
 import { Link } from 'react-router-dom'
 
-const Product = ({ id, title, image, price, editable }) => {
+const Product = ({ isLoading, id, title, image, price, editable }) => {
   return (
     id && (
       <Grid
         container
         className="product-listing"
+        direction="column"
+        justifyContent="space-between"
         sx={{
-          maxHeight: '25rem',
+          minHeight: '22.5rem',
           width: '100%',
           margin: '0rem'
         }}
       >
-        <img className="product-listing-image" src={image} alt={title} />
-        <Grid item>
-          <h3 className="product-title">
-            {title.length > 40 ? `${title.substring(0, 40)}...` : title}
-          </h3>
-        </Grid>
-        <Grid
-          container
-          justifyContent="space-between"
-          sx={{ paddingTop: '0rem', paddingRight: '0rem' }}
-        >
-          <Grid item sx={{ padding: '0rem' }}>
-            <h3 className="price">${price.toFixed(2)}</h3>
-          </Grid>
-          {editable && (
-            <Grid item>
-              <Link to={`/editListing/id/${id}`}>
-                <Button variant="contained" onClick={() => {}}>
-                  <SettingsIcon />
-                </Button>
-              </Link>
+        {!isLoading && (
+          <>
+            <img
+              className="product-listing-image"
+              src={image}
+              alt={title}
+              style={{ height: '14rem' }}
+            />
+            <Grid item sx={{ padding: '1rem' }}>
+              <h3 className="product-title">
+                {title.length > 40 ? `${title.substring(0, 40)}...` : title}
+              </h3>
             </Grid>
-          )}
-        </Grid>
+            <Grid
+              container
+              alignItems="center"
+              justifyContent="space-between"
+              sx={{ padding: '1rem' }}
+            >
+              <Grid item>
+                <h3 className="price" style={{ margin: '0rem' }}>
+                  ${price.toFixed(2)}
+                </h3>
+              </Grid>
+              {editable && (
+                <Grid item>
+                  <Link to={`/editListing/id/${id}`}>
+                    <Button variant="contained" onClick={() => {}}>
+                      <SettingsIcon />
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+            </Grid>
+          </>
+        )}
       </Grid>
     )
   )

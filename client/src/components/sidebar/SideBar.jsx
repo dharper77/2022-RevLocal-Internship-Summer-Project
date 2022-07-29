@@ -22,7 +22,7 @@ const Sidebar = isFetchingProducts => {
   }, [])
 
   return (
-    <Grid item className="sidebar" sx={{ padding: '0rem', width: '85%' }}>
+    <Grid item className="sidebar" sx={{ width: '85%' }}>
       <FormGroup>
         {categories.map(category => (
           <FormControlLabel

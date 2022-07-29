@@ -27,7 +27,12 @@ export const ProfilePage = ({ seller }) => {
         <h2 style={{ marginTop: '4rem' }}>My Listings</h2>
 
         {!isLoading && (
-          <Grid container alignItems="center" justifyContent="flex-start">
+          <Grid
+            container
+            alignItems="center"
+            columnSpacing={3}
+            justifyContent="flex-start"
+          >
             <Grid item xs={1} sx={{ margin: '0rem' }}>
               {myProducts.totalPages > 1 && currentPage > 1 && (
                 <Button

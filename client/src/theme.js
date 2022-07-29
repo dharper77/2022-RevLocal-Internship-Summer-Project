@@ -4,6 +4,13 @@ import './style/App.css'
 const theme = createTheme({
   typography: {
     fontFamily: ['"Roboto Mono"', 'monospace'].join(',')
+  },
+  components: {
+    MuiGrid: {
+      defaultProps: {
+        sx: { padding: '0rem' }
+      }
+    }
   }
 })
 // const themeOptions = createTheme({

@@ -88,12 +88,16 @@ export const CheckoutPage = ({
 
   return (
     <>
-      <Grid container sx={{ justifyContent: 'center' }}>
+      <Grid container justifyContent="center" sx={{ padding: '1rem' }}>
         <Grid
           item
           xs={6}
           className="checkout-products"
-          sx={{ borderRadius: '0.625rem', marginRight: '1rem' }}
+          sx={{
+            borderRadius: '0.625rem',
+            marginRight: '1rem',
+            padding: '1rem'
+          }}
         >
           <h3 className="checkout-header">Review Cart and Shipping</h3>
           {cart.length > 0 && (
@@ -114,8 +118,8 @@ export const CheckoutPage = ({
             sx={{
               justifyContent: 'flex-start',
               alignItems: 'center',
-              padding: '0rem',
-              height: '10rem'
+              height: '10rem',
+              padding: '1rem'
             }}
           >
             <Grid item xs={8} sx={{ display: 'flex' }}>
@@ -151,11 +155,8 @@ export const CheckoutPage = ({
           xs={3}
           sx={{ border: '0.0625rem solid black', borderRadius: '0.625rem' }}
         >
-          <Grid
-            container
-            sx={{ padding: '0rem', justifyContent: 'space-between' }}
-          >
-            <Grid item sx={{ padding: '0rem' }}>
+          <Grid container justifyContent="space-between">
+            <Grid item sx={{ padding: '1rem' }}>
               {totalItemsInCart < 2 ? (
                 <p>Subtotal ({totalItemsInCart} item) </p>
               ) : (
@@ -164,7 +165,7 @@ export const CheckoutPage = ({
               <p>Shipping</p>
               <p>Tax</p>
             </Grid>
-            <Grid item sx={{ padding: '0rem' }}>
+            <Grid item sx={{ padding: '1rem' }}>
               <p className="checkout-totals">${subtotal.toFixed(2)}</p>
               {value === '3 Day' && subtotal >= 100 && (
                 <p className="checkout-totals">Free</p>
@@ -188,14 +189,11 @@ export const CheckoutPage = ({
             </Grid>
           </Grid>
           <Divider />
-          <Grid
-            container
-            sx={{ padding: '0rem', justifyContent: 'space-between' }}
-          >
-            <Grid item sx={{ padding: '0rem' }}>
+          <Grid container sx={{ justifyContent: 'space-between' }}>
+            <Grid item>
               <p className="checkout-order-total">Order Total</p>
             </Grid>
-            <Grid item sx={{ padding: '0rem' }}>
+            <Grid item>
               <p className="checkout-totals">
                 ${(shipping + subtotal + tax).toFixed(2)}
               </p>
@@ -215,14 +213,19 @@ export const CheckoutPage = ({
           item
           xs={6}
           className="checkout-products"
-          sx={{ borderRadius: '0.625rem', marginRight: '1rem' }}
+          sx={{
+            borderRadius: '0.625rem',
+            marginRight: '1rem',
+            padding: '1rem'
+          }}
         >
           <h3 className="checkout-header">Shipping Address</h3>
           <Grid
             container
-            sx={{ justifyContent: 'space-evenly', padding: '0rem' }}
+            justifyContent="space-evenly"
+            sx={{ justifyContent: 'space-evenly' }}
           >
-            <Grid item sx={{ padding: '0rem' }} xs={5.5}>
+            <Grid item xs={5.5}>
               <TextField
                 label="First Name"
                 value={firstName}
@@ -231,7 +234,7 @@ export const CheckoutPage = ({
                 sx={{ width: '100%' }}
               />
             </Grid>
-            <Grid item sx={{ padding: '0rem' }} xs={5.5}>
+            <Grid item xs={5.5}>
               <TextField
                 label="Last Name"
                 value={lastName}
@@ -243,13 +246,10 @@ export const CheckoutPage = ({
           </Grid>
           <Grid
             container
-            sx={{
-              justifyContent: 'space-evenly',
-              padding: '0rem',
-              paddingTop: '1rem'
-            }}
+            justifyContent="space-evenly"
+            sx={{ paddingTop: '1rem' }}
           >
-            <Grid item sx={{ padding: '0rem' }} xs={5.5}>
+            <Grid item xs={5.5}>
               <TextField
                 onChange={event => setStreetAddress1(event.target.value)}
                 value={streetAddress1}
@@ -259,7 +259,7 @@ export const CheckoutPage = ({
                 sx={{ width: '100%' }}
               />
             </Grid>
-            <Grid item sx={{ padding: '0rem' }} xs={5.5}>
+            <Grid item xs={5.5}>
               <TextField
                 onChange={event => setStreetAddress2(event.target.value)}
                 value={streetAddress2}
@@ -272,13 +272,10 @@ export const CheckoutPage = ({
           </Grid>
           <Grid
             container
-            sx={{
-              justifyContent: 'space-evenly',
-              padding: '0rem',
-              paddingTop: '1rem'
-            }}
+            justifyContent="space-evenly"
+            sx={{ paddingTop: '1rem' }}
           >
-            <Grid item sx={{ padding: '0rem' }} xs={3.5}>
+            <Grid item xs={3.5}>
               <TextField
                 onChange={event => setCity(event.target.value)}
                 value={city}
@@ -288,7 +285,7 @@ export const CheckoutPage = ({
                 sx={{ width: '100%' }}
               />
             </Grid>
-            <Grid item sx={{ padding: '0rem' }} xs={3.5}>
+            <Grid item xs={3.5}>
               <TextField
                 onChange={event => setState(event.target.value)}
                 value={state}
@@ -298,7 +295,7 @@ export const CheckoutPage = ({
                 sx={{ width: '100%' }}
               />
             </Grid>
-            <Grid item sx={{ padding: '0rem' }} xs={3.5}>
+            <Grid item xs={3.5}>
               <TextField
                 onChange={event => setZipCode(event.target.value)}
                 value={zipCode}
