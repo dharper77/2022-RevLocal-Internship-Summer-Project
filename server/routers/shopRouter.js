@@ -5,12 +5,14 @@ const router = express.Router()
 
 router.route('/').post(shopController.createNewShop)
 
-router.route('/id/:shopId').patch(shopController.updateShopProp)
-
 router
-  .route('/name/:name')
+  .route('/id/:shopId')
+  .get(shopController.getShopData)
+  .patch(shopController.updateShopProp)
 
-  .get(shopController.isUniqueLogin)
+router.route('/sellerId/:sellerId').get(shopController.getShopIdBySellerId)
+
+router.route('/name/:name').get(shopController.isUniqueLogin)
 
 router.route('/hasAShop/:sellerId').get(shopController.sellerHasAShop)
 

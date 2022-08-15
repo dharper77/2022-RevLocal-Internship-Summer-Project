@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Menu from '@mui/material/Menu'
@@ -13,7 +13,7 @@ import Img from '../../store/imgs/avatar2.jpg'
 import { connect, useDispatch } from 'react-redux'
 import { logOut } from '../../store/reducers/logInReducer'
 
-const AccountMenu = isShopSetUp => {
+const AccountMenu = (isShopSetUp, isLoggedIn, userId) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const dispatch = useDispatch()
@@ -24,6 +24,16 @@ const AccountMenu = isShopSetUp => {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  // isLoggedIn &&
+  // useEffect(() => {
+  //   fetch(`/api/v1/shops/id/${shopId}`)
+  //     .then(response => response.json())
+  //     .then(shop => {
+  //       setIsShop(shop)
+  //     })
+  //     .catch(error => console.log(error))
+  // }, [])
 
   return (
     <React.Fragment>
@@ -83,9 +93,11 @@ const AccountMenu = isShopSetUp => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <Link to="/myProfile">
-          <MenuItem>Profile</MenuItem>
-        </Link>
+        {isShopSetUp.isShopSetUp && (
+          <Link to="/myProfile">
+            <MenuItem>MyShop</MenuItem>
+          </Link>
+        )}
 
         {isShopSetUp.isShopSetUp ? (
           <Link to="/sell">
@@ -119,7 +131,9 @@ const AccountMenu = isShopSetUp => {
 
 const mapStateToProps = state => {
   return {
-    isShopSetUp: state.logIn.loggedInUser.isShopSetUp
+    isShopSetUp: state.logIn.loggedInUser.isShopSetUp,
+    userId: state.logIn.loggedInUser.userId,
+    isLoggedIn: state.logIn.isLoggedIn
   }
 }
 export default connect(mapStateToProps)(AccountMenu)

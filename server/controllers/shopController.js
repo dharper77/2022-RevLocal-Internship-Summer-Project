@@ -36,6 +36,24 @@ exports.createNewShop = async (req, res) => {
   }
 }
 
+exports.getShopData = async (req, res) => {
+  try {
+    const shop = await Shop.findById(req.params.shopId)
+    res.status(200).json({ shop })
+  } catch (err) {
+    res.json({ message: err })
+  }
+}
+
+exports.getShopIdBySellerId = async (req, res) => {
+  try {
+    const shop = await Shop.find({ sellerId: req.params.sellerId })
+    res.status(200).json({ shopId: shop[0]._id })
+  } catch (err) {
+    res.json({ message: err })
+  }
+}
+
 exports.updateShopProp = async (req, res) => {
   try {
     const shop = await Shop.findOneAndUpdate(

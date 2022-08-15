@@ -7,7 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import Header from '../components/header/Header'
 
-export const ProfilePage = ({ seller }) => {
+export const MyShop = ({ seller }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [isLoading, setIsLoading] = useState(true)
   const [myProducts, setMyProducts] = useState(null)
@@ -87,4 +87,4 @@ export const mapStateToProps = state => {
     seller: state.logIn.loggedInUser.userId
   }
 }
-export default connect(mapStateToProps)(ProfilePage)
+export default connect(mapStateToProps)(MyShop)

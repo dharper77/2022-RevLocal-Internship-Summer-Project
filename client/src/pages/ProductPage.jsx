@@ -10,9 +10,10 @@ import { addToCart } from '../store/reducers/cartReducer'
 
 const ProductPage = () => {
   const dispatch = useDispatch()
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [selectedQuantity, setSelectedQuantity] = useState(1)
+  const [shopId, setShopId] = useState('')
   const { id } = useParams()
 
   useEffect(() => {
@@ -21,9 +22,21 @@ const ProductPage = () => {
       .then(product => {
         setProduct(product[0])
         setIsLoading(false)
+        console.log(product)
       })
       .catch(error => console.log(error))
   }, [])
+
+  useEffect(() => {
+    if (product) {
+      fetch(`/api/v1/shops/sellerId/${product.seller.id}`)
+        .then(response => response.json())
+        .then(shopId => {
+          setShopId(shopId.shopId)
+        })
+        .catch(error => console.log(error))
+    }
+  }, [product])
 
   return (
     <>
@@ -42,7 +55,7 @@ const ProductPage = () => {
             <div>
               <h3 className="product-title">{product.title}</h3>
               {product && product.seller && (
-                <Link to={`/seller/${product.seller.id}`}>
+                <Link to={`/shop/${shopId}`}>
                   <Typography
                     sx={{ marginTop: '1rem', marginBottom: '0rem' }}
                     paragraph
